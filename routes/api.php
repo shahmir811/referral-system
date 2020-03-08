@@ -13,3 +13,13 @@ Route::group([
     Route::post('register', 'AuthController@register');
 
 });
+
+Route::group([
+    'namespace' => 'API\Referral',
+    'prefix' => 'referral'
+
+], function () {
+
+    Route::get('/', 'ReferralController@index');
+
+});

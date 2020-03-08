@@ -13,6 +13,11 @@
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+
+        <script type="text/javascript">
+            let APP_URL = {!! json_encode(url('/').'/') !!}
+        </script>
+
    </head>
     <body>
         <div id="app"></div>

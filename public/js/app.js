@@ -69911,7 +69911,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   ancestor: null,
   referrals: [],
-  pending_referrals: []
+  pending_referrals: [],
+  loading: false,
+  errors: {}
 });
 
 /***/ }),
@@ -69939,7 +69941,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   message: null,
   type: null,
-  apiURL: "http://localhost:8000/api"
+  apiURL: "".concat(APP_URL, "api/")
 });
 
 /***/ }),

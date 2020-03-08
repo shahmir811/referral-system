@@ -45,4 +45,19 @@ class User extends Authenticatable implements JWTSubject
             $user->token = time() . mt_rand(10,100);
         });
     }
+
+    public function getAncestor()
+    {
+        return User::where('id', '=', $this->referred_by)->first();
+    }
+
+    public function currentReferrals()
+    {
+        return User::where('referred_by', '=', $this->id)->where('id', '!=', $this->id)->get();
+    }
+
+    public function pendingReferrals()
+    {
+        return $this->referrals();
+    }
 }
