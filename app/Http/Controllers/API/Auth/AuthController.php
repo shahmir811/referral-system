@@ -6,7 +6,7 @@ use Auth;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Http\Requests\{RegisterFormRequest};
+use App\Http\Requests\Auth\{RegisterFormRequest, LoginFormRequest};
 
 class AuthController extends Controller
 {
@@ -15,7 +15,7 @@ class AuthController extends Controller
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
 
-    public function login(Request $request)
+    public function login(LoginFormRequest $request)
     {
         $credentials = $request->only('email', 'password');
 

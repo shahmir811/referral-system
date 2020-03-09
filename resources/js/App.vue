@@ -1,13 +1,20 @@
 <template>
   <div>
-    <h1>Welcome to App.vue</h1>
-    <a href="#" class="btn btn-sm btn-primary">Add</a>
+    <Navigation />
+    <div class="container">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import Navigation from "./components/Navigation.vue";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    Navigation
+  }
 };
 </script>
 
