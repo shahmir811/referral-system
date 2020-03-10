@@ -21,7 +21,7 @@ class MyReferralsResource extends JsonResource
             'role' => $this->role,
             'contact_number' => $this->contact_number,
             'address' => $this->address,
-            'created_at' => $this->created_at
+            'created_at' => date("dS M Y", strtotime($this->created_at))
         ];
     }
 }

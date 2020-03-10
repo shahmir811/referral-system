@@ -19,10 +19,15 @@ Vue.use(BootstrapVue);
 store
     .dispatch("auth/setToken")
     .then(() => {
-        store.dispatch("auth/fetchUser").catch(() => {
-            store.dispatch("auth/clearAuth");
-            router.replace({ name: "login" }).catch(err => {});
-        });
+        store
+            .dispatch("auth/fetchUser")
+            .then(() => {
+                store.dispatch("referrals/getRecords");
+            })
+            .catch(() => {
+                store.dispatch("auth/clearAuth");
+                router.replace({ name: "login" }).catch(err => {});
+            });
     })
     .catch(() => {
         store.dispatch("auth/clearAuth");

@@ -12,7 +12,7 @@ class User extends Authenticatable implements JWTSubject
     use Notifiable;
 
     public function referrals() {
-        return $this->hasMany(Referral::class);
+        return $this->hasMany(Referral::class)->orderBy('created_at', 'desc');
     }
 
     protected $fillable = [
@@ -53,7 +53,7 @@ class User extends Authenticatable implements JWTSubject
 
     public function currentReferrals()
     {
-        return User::where('referred_by', '=', $this->id)->where('id', '!=', $this->id)->get();
+        return User::where('referred_by', '=', $this->id)->where('id', '!=', $this->id)->orderBy('name', 'asc')->get();
     }
 
     public function pendingReferrals()

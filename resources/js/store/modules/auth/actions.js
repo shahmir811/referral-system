@@ -52,6 +52,8 @@ export const loginUser = async (
         // send request to fetch user
         await dispatch("fetchUser");
 
+        await dispatch("referrals/getRecords", null, { root: true });
+
         commit("endLoading");
 
         dispatch(
@@ -81,7 +83,7 @@ export const loginUser = async (
             dispatch(
                 "flashMessage",
                 {
-                    message: "Could not sign you in",
+                    message: "Could not sign you in with those credentials",
                     type: "danger"
                 },
                 { root: true }
@@ -104,7 +106,9 @@ export const logout = async ({ dispatch, rootState }) => {
     try {
         await axios.post(`${rootState.apiURL}/auth/logout`);
 
+        dispatch("referrals/clearAllReferrals", null, { root: true });
         dispatch("clearAuth");
+
         dispatch(
             "flashMessage",
             {

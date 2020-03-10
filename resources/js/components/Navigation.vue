@@ -26,6 +26,9 @@
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'login' }">Home</router-link>
             </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'pending-referrals' }">Pending</router-link>
+            </li>
             <li class="nav-item dropdown">
               <a
                 id="navbarDropdown"
@@ -90,12 +93,11 @@ export default {
     })
   },
   mounted() {
-    console.log("Username: ", this.username);
-    console.log("isAuthenticated: ", this.isAuthenticated);
+    //
   },
   data() {
     return {
-      // username: "shahmir"
+      //
     };
   },
   methods: {
