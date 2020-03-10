@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-50">
       <router-link class="navbar-brand" :to="{ name: 'landing' }">Connect People</router-link>
       <button
         class="navbar-toggler"
@@ -48,28 +48,30 @@
             <router-link class="nav-link" :to="{ name: 'register' }">Register</router-link>
           </li>
 
-          <li class="nav-item dropdown">
-            <a
-              id="navbarDropdown"
-              class="nav-link dropdown-toggle"
-              href="#"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-              v-pre
-            >
-              Shahmir
-              <span class="caret"></span>
-            </a>
+          <template v-if="isAuthenticated">
+            <li class="nav-item dropdown">
+              <a
+                id="navbarDropdown"
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                v-pre
+              >
+                Shahmir
+                <span class="caret"></span>
+              </a>
 
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Action</a>
-              <a class="dropdown-item" href="#">Another action</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Logout</a>
-            </div>
-          </li>
+              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Action</a>
+                <a class="dropdown-item" href="#">Another action</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#">Logout</a>
+              </div>
+            </li>
+          </template>
         </ul>
       </div>
     </nav>
@@ -77,13 +79,24 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  name: "Navigation"
+  name: "Navigation",
+  computed: {
+    ...mapGetters({
+      isAuthenticated: "auth/isAuthenticated"
+    })
+  }
 };
 </script>
 
 <style lang="css">
 .dropdown-menu {
   left: -61px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
 }
 </style>
