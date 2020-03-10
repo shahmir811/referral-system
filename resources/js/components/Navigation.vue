@@ -22,33 +22,10 @@
         <ul class="navbar-nav ml-auto">
           <!-- Authentication Links -->
 
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'login' }">Home</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'how-it-works' }">How It Woks</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Us</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'faq' }">FAQ</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'how-to-promote' }">How to Promote</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'contactUs' }">Contact Us</router-link>
-          </li>
-
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'login' }">Login</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link class="nav-link" :to="{ name: 'register' }">Register</router-link>
-          </li>
-
           <template v-if="isAuthenticated">
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'login' }">Home</router-link>
+            </li>
             <li class="nav-item dropdown">
               <a
                 id="navbarDropdown"
@@ -58,18 +35,40 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
-                v-pre
               >
-                Shahmir
+                {{ username }}
                 <span class="caret"></span>
               </a>
 
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
+                <router-link class="dropdown-item" :to="{ name: 'profile' }">My Profile</router-link>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Logout</a>
+                <a class="dropdown-item" href="#" @click="logout">Logout</a>
               </div>
+            </li>
+          </template>
+          <template v-else>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'how-it-works' }">How It Woks</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Us</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'faq' }">FAQ</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'how-to-promote' }">How to Promote</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'contactUs' }">Contact Us</router-link>
+            </li>
+
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'login' }">Login</router-link>
+            </li>
+            <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'register' }">Register</router-link>
             </li>
           </template>
         </ul>
@@ -79,13 +78,29 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Navigation",
   computed: {
     ...mapGetters({
-      isAuthenticated: "auth/isAuthenticated"
+      isAuthenticated: "auth/isAuthenticated",
+      username: "auth/username",
+      user: "auth/user"
+    })
+  },
+  mounted() {
+    console.log("Username: ", this.username);
+    console.log("isAuthenticated: ", this.isAuthenticated);
+  },
+  data() {
+    return {
+      // username: "shahmir"
+    };
+  },
+  methods: {
+    ...mapActions({
+      logout: "auth/logout"
     })
   }
 };

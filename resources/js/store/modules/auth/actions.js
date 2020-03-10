@@ -63,7 +63,15 @@ export const loginUser = async (
             { root: true }
         );
 
-        router.push("/home");
+        // Below code redirects user to intended page after login
+        localForage.getItem("intended").then(name => {
+            if (isEmpty(name)) {
+                router.push("/home");
+                return;
+            }
+
+            router.push({ name });
+        });
     } catch (error) {
         console.log(error);
         if (error.response.status === 422) {
@@ -89,6 +97,26 @@ export const fetchUser = ({ commit, dispatch, rootState }) => {
         commit("setIsAuthenticated", true);
         commit("setUserData", response.data.data.user);
     });
+};
+
+/////////////////////// Logout user //////////////////
+export const logout = async ({ dispatch, rootState }) => {
+    try {
+        await axios.post(`${rootState.apiURL}/auth/logout`);
+
+        dispatch("clearAuth");
+        dispatch(
+            "flashMessage",
+            {
+                message: "Logout successfully",
+                type: "success"
+            },
+            { root: true }
+        );
+        router.push({ name: "landing" });
+    } catch (error) {
+        console.log(error);
+    }
 };
 
 /////////////////////// set token to localStorage ///////////////////////

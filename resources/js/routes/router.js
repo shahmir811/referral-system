@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Router from "vue-router";
+import beforeEach from "./beforeEach";
 
 Vue.use(Router);
 
@@ -13,6 +14,7 @@ import Login from "../pages/Login/Login.vue";
 import Register from "../pages/Register/Register.vue";
 import Home from "../pages/Home/Home.vue";
 import NotFound from "../pages/Error/NotFound.vue";
+import Profile from "../pages/Profile/Profile.vue";
 
 const router = new Router({
     routes: [
@@ -71,6 +73,12 @@ const router = new Router({
             meta: { guest: false, needsAuth: true }
         },
         {
+            path: "/profile",
+            component: Profile,
+            name: "profile",
+            meta: { guest: false, needsAuth: true }
+        },
+        {
             path: "*",
             component: NotFound
         }
@@ -80,5 +88,6 @@ const router = new Router({
 });
 
 // Registering beforeEach
+router.beforeEach(beforeEach);
 
 export default router;
