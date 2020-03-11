@@ -26,9 +26,14 @@
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'login' }">Home</router-link>
             </li>
-            <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'pending-referrals' }">Pending</router-link>
-            </li>
+            <template v-if="role !== 'free'">
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'pending-referrals' }">Pending</router-link>
+              </li>
+              <li class="nav-item">
+                <router-link class="nav-link" :to="{ name: 'sending-inviation' }">Invite Friends</router-link>
+              </li>
+            </template>
             <li class="nav-item dropdown">
               <a
                 id="navbarDropdown"
@@ -89,7 +94,8 @@ export default {
     ...mapGetters({
       isAuthenticated: "auth/isAuthenticated",
       username: "auth/username",
-      user: "auth/user"
+      user: "auth/user",
+      role: "auth/role"
     })
   },
   mounted() {

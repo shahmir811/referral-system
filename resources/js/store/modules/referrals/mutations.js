@@ -6,12 +6,9 @@ export const clearErrors = state => (state.errors = []);
 
 export const setError = (state, data) => (state.errors = data);
 
-export const setAncestor = (state, data) => (state.ancestor = data);
-
-export const setCurrentReferrals = (state, data) => (state.referrals = data);
-
-export const setPendingReferrals = (state, data) =>
-    (state.pending_referrals = data);
+export const addNewReferral = (state, payload) => {
+    state.pending_referrals.unshift(payload);
+};
 
 export const setInitialRecord = (state, payload) => {
     state.ancestor = payload.ancestor;

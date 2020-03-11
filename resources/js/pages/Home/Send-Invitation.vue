@@ -3,10 +3,10 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Login</div>
+          <div class="card-header">Invite Friends</div>
 
           <div class="card-body">
-            <form @submit="onSubmitHandler">
+            <form class="d-inline" @submit.prevent="onSubmitHandler">
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
 
@@ -24,22 +24,6 @@
                 </div>
               </div>
 
-              <div class="form-group row">
-                <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                <div class="col-md-6">
-                  <input
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    autocomplete="current-password"
-                    v-model="user.password"
-                    :class="{'is-invalid': errors.password }"
-                  />
-                  <span class="invalid-feedback" v-if="errors.password">{{ errors.password[0] }}</span>
-                </div>
-              </div>
-
               <div class="form-group row mb-0">
                 <div class="col-md-8 offset-md-4">
                   <button type="submit" class="btn btn-primary" :disabled="loading">
@@ -48,10 +32,8 @@
                         <span class="sr-only">Loading...</span>
                       </div>
                     </template>
-                    <template v-else>Login</template>
+                    <template v-else>Submit</template>
                   </button>
-
-                  <a class="btn btn-link" href="#">Forgot Your Password?</a>
                 </div>
               </div>
             </form>
@@ -66,32 +48,29 @@
 import { mapGetters, mapActions } from "vuex";
 
 export default {
-  name: "Login",
+  name: "Sending-Invitation",
   computed: {
     ...mapGetters({
-      loading: "auth/loading",
-      errors: "auth/errors"
+      errors: "referrals/errors",
+      loading: "referrals/loading"
     })
   },
   data() {
     return {
       user: {
-        emaill: "",
-        password: ""
+        email: ""
       }
     };
   },
   methods: {
     ...mapActions({
-      loginUser: "auth/loginUser"
+      inviteFriend: "referrals/inviteFriend"
     }),
-    onSubmitHandler(e) {
-      e.preventDefault();
-      this.loginUser(this.user);
+    onSubmitHandler() {
+      this.inviteFriend(this.user.email);
     }
   }
 };
 </script>
 
-<style lang="css">
-</style>
+<style lang="css"></style>

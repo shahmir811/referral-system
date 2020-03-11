@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Mail\Referrals\ReferralReceived;
 // use App\Rules\{NotReferAgain, NotReferMySelf};
 use App\Http\Resources\User\CurrentUserRecord;
+use App\Http\Resources\User\MyReferralsResource;
 use App\Http\Requests\Referrals\SendReferralRequest;
 
 class ReferralController extends Controller
@@ -39,7 +40,10 @@ class ReferralController extends Controller
 
         return response() -> json([
             'status' => 1,
-            'message' => 'Invitation sent'
+            'message' => 'Invitation sent',
+            'data' => [
+                'referral' => new MyReferralsResource($referral),
+            ]
         ], 200);
     }
 }

@@ -10,7 +10,12 @@ export const errors = state => state.errors;
 
 export const username = state => {
     if (!_.isEmpty(state.user)) {
-        console.log("NAME: ", state.user.name);
         return state.user.name;
+    }
+};
+
+export const role = state => {
+    if (!_.isEmpty(state.user)) {
+        return state.user.role;
     }
 };
