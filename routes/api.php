@@ -21,5 +21,6 @@ Route::group([
 ], function () {
 
     Route::get('/', 'ReferralController@index');
+    Route::post('/sendReferral', 'ReferralController@sendReferral');
 
 });

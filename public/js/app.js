@@ -98385,6 +98385,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
+  mode: "history",
   routes: [{
     path: "/",
     component: _pages_Guests_Landing_vue__WEBPACK_IMPORTED_MODULE_3__["default"],

@@ -18,6 +18,7 @@ import NotFound from "../pages/Error/NotFound.vue";
 import Profile from "../pages/Profile/Profile.vue";
 
 const router = new Router({
+    mode: "history",
     routes: [
         {
             path: "/",
