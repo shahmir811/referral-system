@@ -3,5 +3,6 @@ export default {
     referrals: [],
     pending_referrals: [],
     loading: false,
-    errors: []
+    errors: [],
+    users: []
 };

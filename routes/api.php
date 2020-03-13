@@ -25,5 +25,7 @@ Route::group([
     Route::get('/activateUserAccount/{id}', 'ReferralController@activateUserAccount');
     Route::post('/updateProfile/{id}', 'ReferralController@updateProfile');
     Route::post('/updatePassword/{id}', 'ReferralController@updatePassword');
+    Route::get('/changeUserStatusByAdmin/{id}', 'ReferralController@changeUserStatusByAdmin');
+    Route::get('/allSystemUsers', 'ReferralController@allSystemUsers');
 
 });

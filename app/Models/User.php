@@ -60,4 +60,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->referrals();
     }
+
+    public function ancestorName()
+    {
+        return User::where('id', '=', $this->referred_by)->pluck('name')->first();
+    }
 }

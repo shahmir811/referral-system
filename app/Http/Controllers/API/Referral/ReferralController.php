@@ -9,9 +9,9 @@ use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\Referrals\ReferralReceived;
-use App\Http\Resources\User\CurrentUserRecord;
+use App\Http\Resources\User\{CurrentUserRecord, UserResource};
 use App\Http\Resources\User\MyReferralsResource;
-use App\Http\Requests\Referrals\{SendReferralRequest, UpdateProfileRequest, UpdatePasswordRequest};
+use App\Http\Requests\Referrals\{SendReferralRequest, UpdatePasswordRequest};
 
 class ReferralController extends Controller
 {
@@ -59,6 +59,18 @@ class ReferralController extends Controller
         ], 200);
     }
 
+    public function changeUserStatusByAdmin($id)
+    {
+        $user = User::findOrFail($id);
+        $user->role = $user->role == 'free' ? 'active' : 'free' ;
+        $user->save();
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User status changed',
+        ], 200);
+    }
+
     public function updateProfile(Request $request, $id)
     {
         $request->validate([
@@ -88,5 +100,17 @@ class ReferralController extends Controller
             'status' => 1,
             'message' => 'User password updated',
         ], 200);
+    }
+
+    public function allSystemUsers()
+    {
+        $users = User::orderBy('name', 'asc')->get();
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User profile updated',
+            'data' => UserResource::collection($users)
+        ], 200);
+
+
     }
 }

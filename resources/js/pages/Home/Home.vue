@@ -24,45 +24,56 @@
       </table>
     </div>
 
-    <div class="row">
-      <div class="col-md-12">
-        <h3 class="text-center">Referrals - ({{ referrals_count }})</h3>
+    <template v-if="role == 'free'">
+      <p>
+        You account is curretly
+        <strong>free</strong>. Kindly contact your ancestor to activate your account.
+      </p>
+      <p>Once you activate your account, you are allowed to send invitations to your friends to join use</p>
+    </template>
+    <template v-else>
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-center">Referrals - ({{ referrals_count }})</h3>
 
-        <table class="table table-stripped table-hover table-bordered">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact Number</th>
-              <th>Address</th>
-              <th>Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-if="referrals_count > 0">
-              <tr v-for="(record, index) in referrals" :key="record.id">
-                <td>{{ ++index }}</td>
-                <td>{{ record.name }}</td>
-                <td>{{ record.email }}</td>
-                <td>{{ record.contact_number }}</td>
-                <td>{{ record.address }}</td>
-                <td>
-                  <template v-if="record.role == 'free'">
-                    <a
-                      href="#"
-                      class="btn btn-sm btn-success"
-                      @click.prevent="activateUser(record.id)"
-                    >Free</a>
-                  </template>
-                  <template v-else>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</template>
-                </td>
+          <table class="table table-stripped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Status</th>
               </tr>
-            </template>
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              <template v-if="referrals_count > 0">
+                <tr v-for="(record, index) in referrals" :key="record.id">
+                  <td>{{ ++index }}</td>
+                  <td>{{ record.name }}</td>
+                  <td>{{ record.email }}</td>
+                  <td>{{ record.contact_number }}</td>
+                  <td>{{ record.address }}</td>
+                  <td>
+                    <template v-if="record.role == 'free'">
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-success"
+                        @click.prevent="activateUser(record.id)"
+                      >Free</a>
+                    </template>
+                    <template
+                      v-else
+                    >{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</template>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -76,7 +87,8 @@ export default {
       loading: "referrals/loading",
       ancestor: "referrals/ancestor",
       referrals_count: "referrals/referrals_count",
-      referrals: "referrals/referrals"
+      referrals: "referrals/referrals",
+      role: "auth/role"
     })
   },
   methods: {

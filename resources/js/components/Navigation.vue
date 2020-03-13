@@ -27,6 +27,9 @@
               <router-link class="nav-link" :to="{ name: 'login' }">Home</router-link>
             </li>
             <template v-if="role !== 'free'">
+              <li class="nav-item" v-if="role == 'admin'">
+                <router-link class="nav-link" :to="{ name: 'all-users' }">All Users</router-link>
+              </li>
               <li class="nav-item">
                 <router-link class="nav-link" :to="{ name: 'pending-referrals' }">Pending</router-link>
               </li>

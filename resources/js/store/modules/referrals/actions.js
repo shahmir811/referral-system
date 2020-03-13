@@ -68,6 +68,16 @@ export const activateUserAccount = ({ commit, rootState }, userId) => {
         .catch(error => console.log(error));
 };
 
+/////////////////////// Change User status ///////////////////////
+export const changeUserStatus = ({ commit, dispatch, rootState }, userId) => {
+    return axios
+        .get(`${rootState.apiURL}/referral/changeUserStatusByAdmin/${userId}`)
+        .then(response => {
+            commit("changeUserStatus", userId);
+        })
+        .catch(error => console.log(error));
+};
+
 /////////////////////// Update User profile ///////////////////////
 export const UpdateUserProfile = async (
     { commit, dispatch, rootState },
@@ -146,6 +156,24 @@ export const currentlyLoggedInUser = async (
     } catch (error) {
         console.log(error);
         commit("setError", error.response.data.errors);
+        commit("endLoading");
+    }
+};
+
+/////////////////////// fetch currently logged in user //////////////////
+export const getAllSystemUsers = async ({ commit, rootState }) => {
+    commit("startLoading");
+
+    try {
+        const response = await axios.get(
+            `${rootState.apiURL}/referral/allSystemUsers`
+        );
+
+        commit("updateUsersList", response.data.data);
+
+        commit("endLoading");
+    } catch (error) {
+        console.log(error);
         commit("endLoading");
     }
 };

@@ -10,8 +10,9 @@ export const referrals = state => sortBy(state.referrals, ["name"]);
 
 export const pending_referrals = state => state.pending_referrals;
 
-// export const pending_referrals = state =>
-// sortBy(state.pending_referrals, ["created_at"]).reverse();
+export const users_count = state => state.users.length;
+
+export const users = state => state.users;
 
 export const referrals_count = state => state.referrals.length;
 
