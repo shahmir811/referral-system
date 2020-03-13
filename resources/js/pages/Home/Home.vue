@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="!loading">
     <div class="jumbotron no-padding">
       <h1 class="display-4 text-center">Ancestor</h1>
       <table class="table table-stripped table-hover">
@@ -26,10 +26,10 @@
 
     <template v-if="role == 'free'">
       <p>
-        You account is curretly
+        You account is currently
         <strong>free</strong>. Kindly contact your ancestor to activate your account.
       </p>
-      <p>Once you activate your account, you are allowed to send invitations to your friends to join use</p>
+      <p>Once you activate your account, you are allowed to send invitations to your friends to join us</p>
     </template>
     <template v-else>
       <div class="row">

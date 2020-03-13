@@ -27,5 +27,16 @@ Route::group([
     Route::post('/updatePassword/{id}', 'ReferralController@updatePassword');
     Route::get('/changeUserStatusByAdmin/{id}', 'ReferralController@changeUserStatusByAdmin');
     Route::get('/allSystemUsers', 'ReferralController@allSystemUsers');
+    Route::post('/changePasswordByAdmin/{token}', 'ReferralController@changePasswordByAdmin');
 
 });
+
+Route::group([
+    'namespace' => 'API\Auth'
+
+], function () {
+
+    Route::post('/userForgotPassword', 'ForgotPasswordController@userForgotPassword');
+
+});
+

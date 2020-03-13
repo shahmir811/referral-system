@@ -113,4 +113,21 @@ class ReferralController extends Controller
 
 
     }
+
+    public function changePasswordByAdmin(Request $request, $token)
+    {
+       $request->validate([
+            'new_password' => 'required|min:6',
+        ]);
+
+        $user = User::where('token', '=', $token)->first();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User password changed by admin',
+        ], 200);   
+
+    }
 }

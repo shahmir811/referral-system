@@ -7,6 +7,8 @@ Vue.use(Router);
 import Landing from "../pages/Guests/Landing.vue";
 import AboutUs from "../pages/Guests/About-us.vue";
 import ContactUs from "../pages/Guests/Contact-us.vue";
+import ForgotPassword from "../pages/Guests/Forgot-password.vue";
+import PasswordReset from "../pages/Guests/Password-reset.vue";
 import FAQ from "../pages/Guests/FAQ.vue";
 import HowItWorks from "../pages/Guests/How-it-works.vue";
 import HowToPromote from "../pages/Guests/How-to-promote.vue";
@@ -14,6 +16,7 @@ import Login from "../pages/Login/Login.vue";
 import Register from "../pages/Register/Register.vue";
 import Home from "../pages/Home/Home.vue";
 import PendingReferrals from "../pages/Home/Pending-referrals.vue";
+import NewPassword from "../pages/Home/New-Password.vue";
 import AllUsers from "../pages/Home/AllUsers.vue";
 import NotFound from "../pages/Error/NotFound.vue";
 import Profile from "../pages/Profile/Profile.vue";
@@ -58,6 +61,18 @@ const router = new Router({
             path: "/how-to-promote",
             component: HowToPromote,
             name: "how-to-promote",
+            meta: { guest: true, needsAuth: false }
+        },
+        {
+            path: "/forgot-password",
+            component: ForgotPassword,
+            name: "forgot-password",
+            meta: { guest: true, needsAuth: false }
+        },
+        {
+            path: "/password-reset/:token",
+            component: PasswordReset,
+            name: "password-reset",
             meta: { guest: true, needsAuth: false }
         },
         {
@@ -112,6 +127,12 @@ const router = new Router({
             path: "/all-users",
             component: AllUsers,
             name: "all-users",
+            meta: { guest: false, needsAuth: true }
+        },
+        {
+            path: "/new-password/:token",
+            component: NewPassword,
+            name: "new-password",
             meta: { guest: false, needsAuth: true }
         },
         {

@@ -51,7 +51,7 @@
                     <template v-else>Login</template>
                   </button>
 
-                  <a class="btn btn-link" href="#">Forgot Your Password?</a>
+                  <router-link class="btn btn-link" to="/forgot-password">Forgot Your Password?</router-link>
                 </div>
               </div>
             </form>

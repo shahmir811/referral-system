@@ -177,3 +177,34 @@ export const getAllSystemUsers = async ({ commit, rootState }) => {
         commit("endLoading");
     }
 };
+
+/////////////////////// change user password by admin  //////////////////
+export const changePassword = async ({ commit, dispatch, rootState }, data) => {
+    commit("clearErrors");
+    commit("startLoading");
+
+    try {
+        await axios.post(
+            `${rootState.apiURL}/referral/changePasswordByAdmin/${data.token}`,
+            {
+                new_password: data.new_password
+            }
+        );
+
+        dispatch(
+            "flashMessage",
+            {
+                message: "Password updated successfully",
+                type: "success"
+            },
+            { root: true }
+        );
+
+        commit("endLoading");
+        router.push("/all-users");
+    } catch (error) {
+        console.log(error);
+        commit("setError", error.response.data.errors);
+        commit("endLoading");
+    }
+};

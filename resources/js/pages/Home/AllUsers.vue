@@ -30,9 +30,17 @@
                 <td v-if="record.role != 'admin' ">
                   <a
                     href="#"
-                    class="btn btn-sm btn-secondary"
+                    class="btn btn-sm btn-primary"
                     @click.prevent="onClickHandler(record.id)"
-                  >Change Status</a>
+                  >
+                    <i class="fa fa-caret-square-o-right"></i> Status
+                  </a>
+                  <router-link
+                    :to="{ name: 'new-password', params: { token: record.token } }"
+                    class="btn btn-sm btn-secondary"
+                  >
+                    <i class="fa fa-key"></i> Password
+                  </router-link>
                 </td>
               </tr>
             </template>
