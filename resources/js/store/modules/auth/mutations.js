@@ -11,6 +11,12 @@ export const setError = (state, payload) => (state.errors = payload);
 
 export const errors = state => state.errors;
 
+export const updateLoggedInUserProfile = (state, payload) => {
+    state.user.name = payload.name;
+    state.user.contact_number = payload.contact_number;
+    state.user.address = payload.address;
+};
+
 export const setIsAuthenticated = (state, trueOrFalse) =>
     (state.isAuthenticated = trueOrFalse);
 

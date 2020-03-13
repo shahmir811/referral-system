@@ -10,6 +10,11 @@ export const addNewReferral = (state, payload) => {
     state.pending_referrals.unshift(payload);
 };
 
+export const activateUser = (state, userId) => {
+    const index = state.referrals.findIndex(referral => referral.id === userId);
+    state.referrals[index].role = "active";
+};
+
 export const setInitialRecord = (state, payload) => {
     state.ancestor = payload.ancestor;
     state.referrals = payload.current_referrals;

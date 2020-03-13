@@ -47,7 +47,16 @@
                 <td>{{ record.email }}</td>
                 <td>{{ record.contact_number }}</td>
                 <td>{{ record.address }}</td>
-                <td>{{ record.role }}</td>
+                <td>
+                  <template v-if="record.role == 'free'">
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-success"
+                      @click.prevent="activateUser(record.id)"
+                    >Free</a>
+                  </template>
+                  <template v-else>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</template>
+                </td>
               </tr>
             </template>
           </tbody>
@@ -58,7 +67,7 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Home",
@@ -69,6 +78,34 @@ export default {
       referrals_count: "referrals/referrals_count",
       referrals: "referrals/referrals"
     })
+  },
+  methods: {
+    ...mapActions({
+      activateUserAccount: "referrals/activateUserAccount"
+    }),
+    activateUser(userId) {
+      this.$swal
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, activate it!"
+        })
+        .then(result => {
+          if (result.value) {
+            this.activateUserAccount(userId).then(() => {
+              this.$swal.fire(
+                "Activated!",
+                "User has been activated.",
+                "success"
+              );
+            });
+          }
+        });
+    }
   }
 };
 </script>

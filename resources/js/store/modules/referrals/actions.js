@@ -33,10 +33,6 @@ export const inviteFriend = async (
             }
         );
 
-        console.log("REFERRAL: ", response.data.data);
-
-        console.log("REFERRAL: ", response.data.data.referral);
-
         commit("addNewReferral", response.data.data.referral);
 
         dispatch(
@@ -60,4 +56,96 @@ export const inviteFriend = async (
 
 export const clearAllReferrals = ({ commit }) => {
     commit("clearAllReferrals");
+};
+
+/////////////////////// Activate User Account ///////////////////////
+export const activateUserAccount = ({ commit, rootState }, userId) => {
+    return axios
+        .get(`${rootState.apiURL}/referral/activateUserAccount/${userId}`)
+        .then(response => {
+            commit("activateUser", userId);
+        })
+        .catch(error => console.log(error));
+};
+
+/////////////////////// Update User profile ///////////////////////
+export const UpdateUserProfile = async (
+    { commit, dispatch, rootState },
+    data
+) => {
+    commit("clearErrors");
+    commit("startLoading");
+
+    try {
+        await axios.post(
+            `${rootState.apiURL}/referral/updateProfile/${data.id}`,
+            {
+                name: data.name,
+                contact_number: data.contact_number,
+                address: data.address
+            }
+        );
+
+        dispatch(
+            "auth/UpdateLoggedInUserProfile",
+            {
+                name: data.name,
+                contact_number: data.contact_number,
+                address: data.address
+            },
+            { root: true }
+        );
+
+        dispatch(
+            "flashMessage",
+            {
+                message: "Profile updated successfully",
+                type: "success"
+            },
+            { root: true }
+        );
+
+        commit("endLoading");
+
+        router.push("/profile");
+    } catch (error) {
+        console.log(error);
+        commit("setError", error.response.data.errors);
+        commit("endLoading");
+    }
+};
+
+/////////////////////// Update currently logged in user password ///////////////////////
+export const currentlyLoggedInUser = async (
+    { commit, dispatch, rootState },
+    data
+) => {
+    commit("clearErrors");
+    commit("startLoading");
+
+    try {
+        await axios.post(
+            `${rootState.apiURL}/referral/updatePassword/${data.id}`,
+            {
+                old_password: data.old_password,
+                new_password: data.new_password
+            }
+        );
+
+        dispatch(
+            "flashMessage",
+            {
+                message: "Password updated successfully",
+                type: "success"
+            },
+            { root: true }
+        );
+
+        commit("endLoading");
+        router.push("/profile");
+    } catch (error) {
+        console.log(error);
+        commit("setError", error.response.data.errors);
+        commit("endLoading");
+    }
 };

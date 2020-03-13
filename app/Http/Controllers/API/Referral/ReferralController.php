@@ -4,14 +4,14 @@ namespace App\Http\Controllers\API\Referral;
 
 use URL;
 use Mail;
+use Hash;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Mail\Referrals\ReferralReceived;
-// use App\Rules\{NotReferAgain, NotReferMySelf};
 use App\Http\Resources\User\CurrentUserRecord;
 use App\Http\Resources\User\MyReferralsResource;
-use App\Http\Requests\Referrals\SendReferralRequest;
+use App\Http\Requests\Referrals\{SendReferralRequest, UpdateProfileRequest, UpdatePasswordRequest};
 
 class ReferralController extends Controller
 {
@@ -44,6 +44,49 @@ class ReferralController extends Controller
             'data' => [
                 'referral' => new MyReferralsResource($referral),
             ]
+        ], 200);
+    }
+
+    public function activateUserAccount($id)
+    {
+        $user = User::findOrFail($id);
+        $user->role = 'active';
+        $user->save();
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User account activated',
+        ], 200);
+    }
+
+    public function updateProfile(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'contact_number' => "required|unique:users,contact_number, $id",
+            'address' => 'required',
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->contact_number = $request->contact_number;
+        $user->address = $request->address;
+        $user->save();
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User profile updated',
+        ], 200);
+
+    }
+
+    public function updatePassword(UpdatePasswordRequest $request, $id)
+    {
+        User::find($request->user()->id)->update(['password'=> Hash::make($request->new_password)]);
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User password updated',
         ], 200);
     }
 }

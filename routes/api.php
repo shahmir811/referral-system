@@ -22,5 +22,8 @@ Route::group([
 
     Route::get('/', 'ReferralController@index');
     Route::post('/sendReferral', 'ReferralController@sendReferral');
+    Route::get('/activateUserAccount/{id}', 'ReferralController@activateUserAccount');
+    Route::post('/updateProfile/{id}', 'ReferralController@updateProfile');
+    Route::post('/updatePassword/{id}', 'ReferralController@updatePassword');
 
 });

@@ -155,3 +155,8 @@ export const clearAuth = ({ commit }) => {
     commit("setToken", null);
     setHttpToken(null);
 };
+
+/////////////////////// Update currently logged in user profile //////////////////
+export const UpdateLoggedInUserProfile = ({ commit }, paylaod) => {
+    commit("updateLoggedInUserProfile", paylaod);
+};

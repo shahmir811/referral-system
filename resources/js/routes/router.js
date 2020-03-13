@@ -16,6 +16,8 @@ import Home from "../pages/Home/Home.vue";
 import PendingReferrals from "../pages/Home/Pending-referrals.vue";
 import NotFound from "../pages/Error/NotFound.vue";
 import Profile from "../pages/Profile/Profile.vue";
+import UpdateProfile from "../pages/Profile/UpdateProfile.vue";
+import UpdatePassword from "../pages/Profile/UpdatePassword.vue";
 import SendInvitation from "../pages/Home/Send-Invitation.vue";
 
 const router = new Router({
@@ -91,6 +93,18 @@ const router = new Router({
             path: "/profile",
             component: Profile,
             name: "profile",
+            meta: { guest: false, needsAuth: true }
+        },
+        {
+            path: "/update-profile/:token",
+            component: UpdateProfile,
+            name: "update-profile",
+            meta: { guest: false, needsAuth: true }
+        },
+        {
+            path: "/update-password/:token",
+            component: UpdatePassword,
+            name: "update-password",
             meta: { guest: false, needsAuth: true }
         },
         {
