@@ -9,6 +9,7 @@ export const flashMessage = ({ commit }, alert) => {
     }, 3000);
 };
 
+/////////////////////// User Forgot password email ///////////////////////
 export const userForgotPassword = ({ state, commit, dispatch }, email) => {
     commit("clearErrors");
     commit("startLoading");
@@ -28,4 +29,28 @@ export const userForgotPassword = ({ state, commit, dispatch }, email) => {
             commit("setError", error.response.data);
             commit("endLoading");
         });
+};
+
+/////////////////////// Reset Forgot password  ///////////////////////
+export const resetPassword = async ({ state, commit, dispatch }, data) => {
+    commit("clearErrors");
+    commit("startLoading");
+
+    try {
+        await axios.post(`${state.apiURL}/resetPassword/${data.token}`, {
+            new_password: data.password
+        });
+
+        dispatch("flashMessage", {
+            message: "Password updated successfully",
+            type: "success"
+        });
+
+        commit("endLoading");
+        router.push("/login");
+    } catch (error) {
+        console.log(error.response.data.errors);
+        commit("setError", error.response.data.errors);
+        commit("endLoading");
+    }
 };

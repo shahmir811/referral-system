@@ -70,7 +70,7 @@ const router = new Router({
             meta: { guest: true, needsAuth: false }
         },
         {
-            path: "/password-reset/:token",
+            path: "/password-reset",
             component: PasswordReset,
             name: "password-reset",
             meta: { guest: true, needsAuth: false }

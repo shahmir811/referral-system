@@ -14,4 +14,8 @@ export const endLoading = state => (state.loading = false);
 
 export const clearErrors = state => (state.errors = []);
 
-export const setError = (state, payload) => (state.errors = payload);
+export const setError = (state, payload) => {
+    state.errors = payload;
+    console.log(payload);
+    console.log(state.errors);
+};

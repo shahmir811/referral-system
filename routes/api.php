@@ -37,6 +37,7 @@ Route::group([
 ], function () {
 
     Route::post('/userForgotPassword', 'ForgotPasswordController@userForgotPassword');
+    Route::post('/resetPassword/{token}', 'ForgotPasswordController@resetPassword');
 
 });
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API\Auth;
 
 use Mail;
+use Hash;
 use App\Models\User;
 use App\Mail\Auth\ForgotPassword;
 use App\Http\Controllers\Controller;
@@ -30,6 +31,23 @@ class ForgotPasswordController extends Controller
         return response() -> json([
             'status' => 1,
             'message' => 'Email link sent',
+        ], 200);   
+
+    }
+
+    public function resetPassword(Request $request, $token)
+    {
+        $request->validate([
+            'new_password' => 'required|min:6',
+        ]);
+
+        $user = User::where('token', '=', $request->token)->first();
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User password changed successfully',
         ], 200);   
 
     }

@@ -66,9 +66,7 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "New-Password",
-  mounted() {
-    console.log("TOKEN: ", this.$route.params.token);
-  },
+  mounted() {},
   computed: {
     ...mapGetters({
       errors: "referrals/errors",
