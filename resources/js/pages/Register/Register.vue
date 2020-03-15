@@ -3,7 +3,7 @@
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
-          <div class="card-header">Register</div>
+          <div class="card-header">Register Account</div>
 
           <div class="card-body">
             <form @submit="onSubmitHandler">
@@ -34,6 +34,7 @@
                     class="form-control"
                     autocomplete="email"
                     v-model="user.email"
+                    :disabled="user.token"
                     :class="{'is-invalid': errors.email }"
                   />
                   <span class="invalid-feedback" v-if="errors.email">{{ errors.email[0] }}</span>
@@ -98,6 +99,12 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
   name: "Register",
+  mounted() {
+    this.user.email = this.$route.query.email ? this.$route.query.email : "";
+    this.user.token = this.$route.query.referral
+      ? this.$route.query.referral
+      : null;
+  },
   computed: {
     ...mapGetters({
       loading: "auth/loading",
@@ -108,9 +115,10 @@ export default {
     return {
       user: {
         name: "",
-        emaill: "",
+        email: "",
         password: "",
-        password_confirmation: ""
+        password_confirmation: "",
+        token: null
       }
     };
   },
@@ -129,7 +137,17 @@ export default {
 
         return false;
       }
-      this.registerNewUser(this.user);
+
+      let newUser = null;
+
+      // Referral register
+      if (this.user.token) {
+        newUser = this.user;
+      } else {
+        newUser = _.omit(this.user, ["token"]);
+      }
+
+      this.registerNewUser(newUser);
     }
   }
 };

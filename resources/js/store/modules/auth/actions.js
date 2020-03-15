@@ -28,6 +28,18 @@ export const registerNewUser = async (
         router.push("/login");
     } catch (error) {
         commit("setError", error.response.data.errors);
+        let comingErrors = error.response.data.errors;
+        if (_.has(comingErrors, "token")) {
+            dispatch(
+                "flashMessage",
+                {
+                    message:
+                        "Oops! It seems that your referral is incorrect. Kindly contact your friend",
+                    type: "danger"
+                },
+                { root: true }
+            );
+        }
         commit("endLoading");
     }
 };

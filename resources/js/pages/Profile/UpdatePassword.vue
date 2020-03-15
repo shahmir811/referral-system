@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col col-md">
-        <h1 class="text-center">Update Profile</h1>
+        <h1 class="text-center">Update Password</h1>
       </div>
     </div>
 
