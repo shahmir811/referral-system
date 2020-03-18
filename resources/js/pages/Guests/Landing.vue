@@ -8,7 +8,7 @@
       <router-link class="btn btn-success btn-lg" to="login">
         <i class="fa fa-sign-in" aria-hidden="true"></i> Login
       </router-link>
-      <router-link class="btn btn-secondary btn-lg" to="login">
+      <router-link class="btn btn-secondary btn-lg" to="register">
         <i class="fa fa-user-plus" aria-hidden="true"></i> Register
       </router-link>
     </div>

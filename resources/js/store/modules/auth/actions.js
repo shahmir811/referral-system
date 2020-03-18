@@ -172,3 +172,8 @@ export const clearAuth = ({ commit }) => {
 export const UpdateLoggedInUserProfile = ({ commit }, paylaod) => {
     commit("updateLoggedInUserProfile", paylaod);
 };
+
+/////////////////////// Remove errors //////////////////
+export const removeAllErrors = ({ commit }) => {
+    commit("clearErrors");
+};

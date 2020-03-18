@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-50">
-      <router-link class="navbar-brand" :to="{ name: 'landing' }">Connect People</router-link>
+      <router-link class="navbar-brand" :to="{ name: 'landing' }">Net Contacts</router-link>
       <button
         class="navbar-toggler"
         type="button"

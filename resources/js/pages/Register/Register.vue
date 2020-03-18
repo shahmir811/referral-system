@@ -100,6 +100,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "Register",
   mounted() {
+    this.removeAllErrors();
     this.user.email = this.$route.query.email ? this.$route.query.email : "";
     this.user.token = this.$route.query.referral
       ? this.$route.query.referral
@@ -125,7 +126,8 @@ export default {
   methods: {
     ...mapActions({
       flashMessage: "flashMessage",
-      registerNewUser: "auth/registerNewUser"
+      registerNewUser: "auth/registerNewUser",
+      removeAllErrors: "auth/removeAllErrors"
     }),
     onSubmitHandler(e) {
       e.preventDefault();
