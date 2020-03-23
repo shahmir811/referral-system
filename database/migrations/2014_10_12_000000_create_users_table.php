@@ -21,6 +21,10 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('contact_number')->unique()->nullable();
             $table->string('address')->nullable();
+            $table->string('state')->nullable();
+            $table->string('account_number')->nullable();
+            $table->string('bank')->nullable();
+            $table->string('image')->nullable();
             $table->integer('referred_by')->default(1);
             $table->string('token')->unique();
             $table->rememberToken();

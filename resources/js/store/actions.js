@@ -54,3 +54,27 @@ export const resetPassword = async ({ state, commit, dispatch }, data) => {
         commit("endLoading");
     }
 };
+
+/////////////////////// Contact Us form ///////////////////////
+export const contactUsRequest = ({ state, commit, dispatch }, data) => {
+    commit("clearErrors");
+    commit("startLoading");
+
+    return axios
+        .post(`${state.apiURL}/contact-us`, data)
+        .then(response => {
+            console.log(response.data);
+
+            dispatch("flashMessage", {
+                message: "Your request has been sent successfully",
+                type: "success"
+            });
+
+            commit("endLoading");
+        })
+        .catch(error => {
+            console.log(error.response.data.errors);
+            commit("setError", error.response.data.errors);
+            commit("endLoading");
+        });
+};

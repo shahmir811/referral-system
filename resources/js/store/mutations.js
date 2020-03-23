@@ -16,6 +16,4 @@ export const clearErrors = state => (state.errors = []);
 
 export const setError = (state, payload) => {
     state.errors = payload;
-    console.log(payload);
-    console.log(state.errors);
 };

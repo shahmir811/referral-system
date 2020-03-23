@@ -1,5 +1,8 @@
 <?php
 
+
+Route::post('contact-us', 'Api\Guest\ContactController@contactUS');
+
 Route::group([
     'namespace' => 'API\Auth',
     'prefix' => 'auth'

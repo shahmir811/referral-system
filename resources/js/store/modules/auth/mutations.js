@@ -15,6 +15,10 @@ export const updateLoggedInUserProfile = (state, payload) => {
     state.user.name = payload.name;
     state.user.contact_number = payload.contact_number;
     state.user.address = payload.address;
+    state.user.state = payload.state;
+    state.user.account_number = payload.account_number;
+    state.user.bank = payload.bank;
+    state.user.image = payload.image;
 };
 
 export const setIsAuthenticated = (state, trueOrFalse) =>

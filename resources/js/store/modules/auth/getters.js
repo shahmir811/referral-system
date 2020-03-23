@@ -19,3 +19,11 @@ export const role = state => {
         return state.user.role;
     }
 };
+
+export const userHasImage = state => {
+    if (!_.isEmpty(state.user)) {
+        return state.user.image ? true : false;
+    } else {
+        return false;
+    }
+};

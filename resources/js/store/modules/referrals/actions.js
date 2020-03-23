@@ -85,26 +85,22 @@ export const UpdateUserProfile = async (
 ) => {
     commit("clearErrors");
     commit("startLoading");
+    let config = {
+        header: {
+            "Content-Type": "multipart/form-data"
+        }
+    };
 
     try {
-        await axios.post(
-            `${rootState.apiURL}/referral/updateProfile/${data.id}`,
-            {
-                name: data.name,
-                contact_number: data.contact_number,
-                address: data.address
-            }
+        const response = await axios.post(
+            `${rootState.apiURL}/referral/updateProfile/${rootState.auth.user.id}`,
+            data,
+            config
         );
 
-        dispatch(
-            "auth/UpdateLoggedInUserProfile",
-            {
-                name: data.name,
-                contact_number: data.contact_number,
-                address: data.address
-            },
-            { root: true }
-        );
+        dispatch("auth/UpdateLoggedInUserProfile", response.data.data.user, {
+            root: true
+        });
 
         dispatch(
             "flashMessage",
@@ -207,4 +203,9 @@ export const changePassword = async ({ commit, dispatch, rootState }, data) => {
         commit("setError", error.response.data.errors);
         commit("endLoading");
     }
+};
+
+/////////////////////// Remove errors //////////////////
+export const removeAllErrors = ({ commit }) => {
+    commit("clearErrors");
 };

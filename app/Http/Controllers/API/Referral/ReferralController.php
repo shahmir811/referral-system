@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Referral;
 use URL;
 use Mail;
 use Hash;
+use File;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -75,19 +76,50 @@ class ReferralController extends Controller
     {
         $request->validate([
             'name' => 'required',
+            'email' => "required|unique:users,email, $id",
             'contact_number' => "required|unique:users,contact_number, $id",
-            'address' => 'required',
+            // 'address' => 'required',
+            // 'state' => 'required',
+            // 'account_number' => 'sometimes|required',
+            // 'bank' => 'sometimes|required',
+            'image' => 'sometimes|image|mimes:jpeg,png,jpg'
+        ], [
+            'image.image' => 'Image must be of type .png, .jpeg or .jpg'
         ]);
 
         $user = User::findOrFail($id);
         $user->name = $request->name;
         $user->contact_number = $request->contact_number;
         $user->address = $request->address;
+        $user->state = $request->state;
+        $user->account_number = $request->account_number;
+        $user->bank = $request->bank;
+
+        if($request->hasFile('image')) {
+
+            // delete old image
+            if($user->image) {
+                File::delete($user->image);
+            }
+            
+            // add new image
+            $filename = time() . '_' .$request->image->getClientOriginalName();
+            $name = str_replace(' ', '_', $filename);
+
+            $request->image->storeAs('public/uploads', $name);
+            $path = 'storage/uploads/' . $name;
+
+            $user->image = $path;
+        }
+
         $user->save();
 
         return response() -> json([
             'status' => 1,
             'message' => 'User profile updated',
+            'data' => [
+                'user' => $user
+            ]
         ], 200);
 
     }
