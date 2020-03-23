@@ -11,7 +11,7 @@
           <h1 class="text-center">Profile</h1>
         </div>
         <div class="col col-md-2">
-          <img :src="`${imageURL}${user.image}`" class="make-round" alt="profile" />
+          <img :src="`${imageURL}public/${user.image}`" class="make-round" alt="profile" />
         </div>
       </template>
     </div>
