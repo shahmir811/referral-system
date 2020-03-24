@@ -8,6 +8,14 @@ export const user = state => state.user;
 
 export const errors = state => state.errors;
 
+export const invitationLink = state => {
+    if (state.user) {
+        return `register?email=${state.user.email}&referral=${state.user.token}`;
+    }
+
+    return null;
+};
+
 export const username = state => {
     if (!_.isEmpty(state.user)) {
         return state.user.name;

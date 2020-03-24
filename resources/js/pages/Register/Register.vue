@@ -25,6 +25,23 @@
               </div>
 
               <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">Referral ID</label>
+
+                <div class="col-md-6">
+                  <input
+                    id="token"
+                    type="text"
+                    class="form-control"
+                    autocomplete="token"
+                    :disabled="referralPage"
+                    v-model="user.token"
+                    :class="{'is-invalid': errors.token }"
+                  />
+                  <span class="invalid-feedback" v-if="errors.token">{{ errors.token[0] }}</span>
+                </div>
+              </div>
+
+              <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
 
                 <div class="col-md-6">
@@ -34,7 +51,7 @@
                     class="form-control"
                     autocomplete="email"
                     v-model="user.email"
-                    :disabled="user.token"
+                    :disabled="referralPage"
                     :class="{'is-invalid': errors.email }"
                   />
                   <span class="invalid-feedback" v-if="errors.email">{{ errors.email[0] }}</span>
@@ -101,6 +118,9 @@ export default {
   name: "Register",
   mounted() {
     this.removeAllErrors();
+    if (this.$route.query.email && this.$route.query.referral) {
+      this.referralPage = true;
+    }
     this.user.email = this.$route.query.email ? this.$route.query.email : "";
     this.user.token = this.$route.query.referral
       ? this.$route.query.referral
@@ -114,6 +134,7 @@ export default {
   },
   data() {
     return {
+      referralPage: false,
       user: {
         name: "",
         email: "",

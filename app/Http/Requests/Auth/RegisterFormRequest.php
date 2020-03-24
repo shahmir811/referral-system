@@ -35,7 +35,7 @@ class RegisterFormRequest extends FormRequest
     public function messages()
     {
         return [
-            'token.exists' => 'It seems that entered token is incorrect',
+            'token.exists' => 'It seems that entered referral ID is incorrect',
         ];
     }
 }
