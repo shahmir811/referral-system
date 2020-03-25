@@ -1,5 +1,5 @@
 <template>
-  <div v-if="!loading">
+  <div v-if="!loading" class="container">
     <div class="jumbotron no-padding">
       <h1 class="display-4 text-center">Ancestor</h1>
       <table class="table table-stripped table-hover">

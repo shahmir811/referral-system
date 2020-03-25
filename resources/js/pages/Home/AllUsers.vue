@@ -1,59 +1,61 @@
 <template>
-  <div>
-    <div class="row" v-if="!loading">
-      <div class="col-md-12">
-        <h3 class="text-center">All Users - ({{ users_count }})</h3>
+  <div class="container">
+    <div class="row">
+      <template v-if="!loading">
+        <div class="col-md-12">
+          <h3 class="text-center">All Users - ({{ users_count }})</h3>
 
-        <table class="table table-stripped table-hover table-bordered">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Contact Number</th>
-              <th>Address</th>
-              <th>Status</th>
-              <th>Referred By</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            <template v-if="users_count > 0">
-              <tr v-for="(record, index) in users" :key="record.id">
-                <td>{{ ++index }}</td>
-                <td>{{ record.name }}</td>
-                <td>{{ record.email }}</td>
-                <td>{{ record.contact_number }}</td>
-                <td>{{ record.address }}</td>
-                <td>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</td>
-                <td>{{ record.referral_name }}</td>
-                <td v-if="record.role != 'admin' ">
-                  <router-link
-                    :to="{ name: 'user-profile', params: { token: record.token } }"
-                    class="btn btn-sm btn-warning"
-                  >
-                    <i class="fa fa-eye" aria-hidden="true"></i>
-                    <span class="white-color">View</span>
-                  </router-link>
-                  <a
-                    href="#"
-                    class="btn btn-sm btn-primary"
-                    @click.prevent="onClickHandler(record.id)"
-                  >
-                    <i class="fa fa-caret-square-o-right"></i> Status
-                  </a>
-                  <router-link
-                    :to="{ name: 'new-password', params: { token: record.token } }"
-                    class="btn btn-sm btn-secondary"
-                  >
-                    <i class="fa fa-key"></i> Password
-                  </router-link>
-                </td>
+          <table class="table table-stripped table-hover table-bordered">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Contact Number</th>
+                <th>Address</th>
+                <th>Status</th>
+                <th>Referred By</th>
+                <th>Action</th>
               </tr>
-            </template>
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              <template v-if="users_count > 0">
+                <tr v-for="(record, index) in users" :key="record.id">
+                  <td>{{ ++index }}</td>
+                  <td>{{ record.name }}</td>
+                  <td>{{ record.email }}</td>
+                  <td>{{ record.contact_number }}</td>
+                  <td>{{ record.address }}</td>
+                  <td>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</td>
+                  <td>{{ record.referral_name }}</td>
+                  <td v-if="record.role != 'admin' ">
+                    <router-link
+                      :to="{ name: 'user-profile', params: { token: record.token } }"
+                      class="btn btn-sm btn-warning"
+                    >
+                      <i class="fa fa-eye" aria-hidden="true"></i>
+                      <span class="white-color">View</span>
+                    </router-link>
+                    <a
+                      href="#"
+                      class="btn btn-sm btn-primary"
+                      @click.prevent="onClickHandler(record.id)"
+                    >
+                      <i class="fa fa-caret-square-o-right"></i> Status
+                    </a>
+                    <router-link
+                      :to="{ name: 'new-password', params: { token: record.token } }"
+                      class="btn btn-sm btn-secondary"
+                    >
+                      <i class="fa fa-key"></i> Password
+                    </router-link>
+                  </td>
+                </tr>
+              </template>
+            </tbody>
+          </table>
+        </div>
+      </template>
     </div>
   </div>
 </template>

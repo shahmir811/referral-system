@@ -1,23 +1,34 @@
 <template>
-  <div>
-    <div class="row">
-      <div class="col col-md">
-        <h1 class="text-center">WELCOME TO NETCONTACTS SUPPORT DESK</h1>
-        <h6 class="mtb-15">
-          <i class="fa fa-envelope" aria-hidden="true"></i> support@netcontacts.com.ng
-        </h6>
-        <h6 class="mtb-15">
-          <i class="fa fa-whatsapp" aria-hidden="true"></i> 08137981072
-        </h6>
-        <h6 class="mtb-15">
-          <i class="fa fa-phone" aria-hidden="true"></i> +23440534352, +2348037472464
-        </h6>
+  <div class="container">
+    <!-- Contact Section Heading -->
+    <h2
+      class="page-section-heading text-center text-uppercase text-secondary mb-0"
+    >WELCOME TO NETCONTACTS SUPPORT DESK</h2>
+
+    <div class="col-md-12 bg-color">
+      <h6 class="mtb-15">
+        <i class="fa fa-envelope" aria-hidden="true"></i> support@netcontacts.com.ng
+      </h6>
+      <h6 class="mtb-15">
+        <i class="fa fa-whatsapp" aria-hidden="true"></i> 08137981072
+      </h6>
+      <h6 class="mtb-15">
+        <i class="fa fa-phone" aria-hidden="true"></i> +23440534352, +2348037472464
+      </h6>
+    </div>
+
+    <!-- Icon Divider -->
+    <div class="divider-custom">
+      <div class="divider-custom-line"></div>
+      <div class="divider-custom-icon">
+        <i class="fas fa-star"></i>
       </div>
+      <div class="divider-custom-line"></div>
     </div>
 
     <div class="row justify-content-md-center">
       <div class="col-md-8">
-        <h3 class="text-center">Contact Us</h3>
+        <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Contact Us</h2>
         <form @submit.prevent="onSubmitHandler" class="mtb-15">
           <div class="form-group row">
             <label for="staticName" class="col-sm-4 col-form-label">Name</label>
@@ -155,6 +166,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+@import "~/css/all.min.css";
+@import "~/css/freelancer.min.css";
+
+h6 {
+  font-size: 1.25rem;
+}
+
 .mtb-15 {
   margin: 15px 0px;
 }

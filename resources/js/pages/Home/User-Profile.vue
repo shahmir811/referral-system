@@ -1,5 +1,5 @@
 <template>
-  <div class v-if="user">
+  <div class="container" v-if="user">
     <div class="row">
       <template v-if="!user.image">
         <div class="col col-md">
