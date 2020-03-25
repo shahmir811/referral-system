@@ -43,9 +43,12 @@ export default {
 </script>
 
 <style lang="css" scoped>
-@import "~/css/all.css";
+/* @import "~/css/all.css"; */
 /* @import "~/css/all.min.css"; */
-@import "~/css/freelancer.min.css";
+/* @import "~/css/freelancer.min.css"; */
+
+@import "~/public/css/all.min.css";
+@import "~/public/css/freelancer.min.css";
 
 .some-more {
   margin-top: -50px;
