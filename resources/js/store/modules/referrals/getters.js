@@ -17,3 +17,5 @@ export const users = state => state.users;
 export const referrals_count = state => state.referrals.length;
 
 export const pending_referrals_count = state => state.pending_referrals.length;
+
+export const selectedUser = state => state.selectedUser;

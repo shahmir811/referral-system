@@ -21,6 +21,10 @@ class UserResource extends JsonResource
             'contact_number' => $this->contact_number,
             'address' => $this->address,
             'token' => $this->token,
+            'bank' => $this->bank,
+            'state' => $this->state,
+            'account_number' => $this->account_number,
+            'image' => $this->image,
             'role' => $this->role,
             'created_at' => date("dS M Y", strtotime($this->created_at)),
             'referral_name' => $this->ancestorName()

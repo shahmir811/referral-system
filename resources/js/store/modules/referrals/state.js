@@ -4,5 +4,6 @@ export default {
     pending_referrals: [],
     loading: false,
     errors: [],
-    users: []
+    users: [],
+    selectedUser: null
 };

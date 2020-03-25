@@ -20,6 +20,7 @@ import NewPassword from "../pages/Home/New-Password.vue";
 import AllUsers from "../pages/Home/AllUsers.vue";
 import NotFound from "../pages/Error/NotFound.vue";
 import Profile from "../pages/Profile/Profile.vue";
+import UserProfile from "../pages/Home/User-Profile.vue";
 import UpdateProfile from "../pages/Profile/UpdateProfile.vue";
 import UpdatePassword from "../pages/Profile/UpdatePassword.vue";
 import SendInvitation from "../pages/Home/Send-Invitation.vue";
@@ -127,6 +128,12 @@ const router = new Router({
             path: "/all-users",
             component: AllUsers,
             name: "all-users",
+            meta: { guest: false, needsAuth: true }
+        },
+        {
+            path: "/user-profile/:token",
+            component: UserProfile,
+            name: "user-profile",
             meta: { guest: false, needsAuth: true }
         },
         {

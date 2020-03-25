@@ -28,6 +28,13 @@
                 <td>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</td>
                 <td>{{ record.referral_name }}</td>
                 <td v-if="record.role != 'admin' ">
+                  <router-link
+                    :to="{ name: 'user-profile', params: { token: record.token } }"
+                    class="btn btn-sm btn-warning"
+                  >
+                    <i class="fa fa-eye" aria-hidden="true"></i>
+                    <span class="white-color">View</span>
+                  </router-link>
                   <a
                     href="#"
                     class="btn btn-sm btn-primary"
@@ -100,4 +107,8 @@ export default {
 </script>
 
 <style lang="css">
+a.btn-warning i,
+.white-color {
+  color: white;
+}
 </style>

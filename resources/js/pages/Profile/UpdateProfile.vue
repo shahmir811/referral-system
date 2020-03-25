@@ -196,7 +196,10 @@ export default {
       this.record = new FormData();
       this.record.append("name", this.loggedInUser.name);
       this.record.append("email", this.loggedInUser.email);
-      this.record.append("contact_number", this.loggedInUser.contact_number);
+      this.record.append(
+        "address",
+        this.loggedInUser.contact_number ? this.loggedInUser.contact_number : ""
+      );
       this.record.append(
         "address",
         this.loggedInUser.address ? this.loggedInUser.address : ""

@@ -35,3 +35,9 @@ export const clearAllReferrals = state => {
     state.pending_referrals = [];
     state.errors = [];
 };
+
+export const clearSelectedUser = state => (state.selectedUser = null);
+
+export const getSelectedUserProfile = (state, token) => {
+    state.selectedUser = state.users.find(data => data.token === token);
+};

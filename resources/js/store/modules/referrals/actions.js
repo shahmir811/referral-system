@@ -209,3 +209,9 @@ export const changePassword = async ({ commit, dispatch, rootState }, data) => {
 export const removeAllErrors = ({ commit }) => {
     commit("clearErrors");
 };
+
+/////////////////////// Get User profile //////////////////
+export const userRecord = ({ commit }, token) => {
+    commit("clearSelectedUser");
+    commit("getSelectedUserProfile", token);
+};
