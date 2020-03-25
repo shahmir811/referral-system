@@ -43,7 +43,8 @@ export default {
 </script>
 
 <style lang="css" scoped>
-@import "~/css/all.min.css";
+@import "~/css/all.css";
+/* @import "~/css/all.min.css"; */
 @import "~/css/freelancer.min.css";
 
 .some-more {
