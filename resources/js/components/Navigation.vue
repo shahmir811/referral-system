@@ -65,9 +65,9 @@
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Us</router-link>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'faq' }">FAQ</router-link>
-            </li>
+            </li>-->
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'how-to-promote' }">How to Promote</router-link>
             </li>

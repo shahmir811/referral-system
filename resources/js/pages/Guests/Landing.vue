@@ -4,7 +4,7 @@
     <header class="masthead bg-primary text-white text-center p-0 pb-5rem">
       <div class="container d-flex align-items-center flex-column">
         <!-- Masthead Avatar Image -->
-        <img class="masthead-avatar mb-5" src="img/avataaars.svg" alt />
+        <img class="masthead-avatar mb-5" src="public/img/avataaars.svg" alt="net-contact" />
 
         <!-- Masthead Heading -->
         <h1 class="masthead-heading text-uppercase mb-0">Net Contacts</h1>
@@ -67,6 +67,6 @@ export default {
 }
 
 .pb-5rem {
-  padding-bottom: 2rem !important;
+  padding-bottom: 0.9rem !important;
 }
 </style>
