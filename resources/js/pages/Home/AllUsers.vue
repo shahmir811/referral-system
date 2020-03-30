@@ -66,11 +66,16 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "AllUsers",
   mounted() {
+    if (this.role !== "admin") {
+      this.$router.push("/not-found");
+      return false;
+    }
     this.getAllSystemUsers();
   },
   computed: {
     ...mapGetters({
       users: "referrals/users",
+      role: "auth/role",
       users_count: "referrals/users_count",
       loading: "referrals/loading"
     })

@@ -71,10 +71,16 @@ export default {
       loading: "referrals/loading",
       siteURL: "imageURL",
       invitationLink: "auth/invitationLink",
-      authUser: "auth/user"
+      authUser: "auth/user",
+      role: "auth/role"
     })
   },
   mounted() {
+    if (this.role === "free" || !this.role) {
+      this.$router.push("/not-found");
+      return false;
+    }
+    console.log("ROLE: ", this.role);
     this.url = this.invitationLink
       ? `${this.siteURL}${this.invitationLink}`
       : `${this.siteURL}`;
