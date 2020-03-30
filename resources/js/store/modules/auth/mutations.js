@@ -17,6 +17,7 @@ export const updateLoggedInUserProfile = (state, payload) => {
     state.user.address = payload.address;
     state.user.state = payload.state;
     state.user.account_number = payload.account_number;
+    state.user.account_name = payload.account_name;
     state.user.bank = payload.bank;
     state.user.image = payload.image;
 };

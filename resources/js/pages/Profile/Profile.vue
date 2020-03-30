@@ -38,6 +38,12 @@
             </div>
           </div>
           <div class="form-group row">
+            <label for="staticInvitedBy" class="col-sm-4 col-form-label">Invited By</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext" id="staticInvitedBy">{{ user.referral_name }}</p>
+            </div>
+          </div>
+          <div class="form-group row">
             <label for="staticContactNumber" class="col-sm-4 col-form-label">Contact Number</label>
             <div class="col-sm-8">
               <p
@@ -64,6 +70,12 @@
               <label for="staticAccountNumber" class="col-sm-4 col-form-label">Account Number</label>
               <div class="col-sm-8">
                 <p class="form-control-plaintext" id="staticAccountNumber">{{ user.account_number }}</p>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="staticAccountName" class="col-sm-4 col-form-label">Account Name</label>
+              <div class="col-sm-8">
+                <p class="form-control-plaintext" id="staticAccountName">{{ user.account_name }}</p>
               </div>
             </div>
             <div class="form-group row">

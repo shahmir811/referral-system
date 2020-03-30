@@ -93,6 +93,7 @@ class ReferralController extends Controller
         $user->address = $request->address;
         $user->state = $request->state;
         $user->account_number = $request->account_number;
+        $user->account_name = $request->account_name;
         $user->bank = $request->bank;
 
         if($request->hasFile('image')) {

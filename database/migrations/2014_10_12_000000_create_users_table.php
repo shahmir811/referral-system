@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('state')->nullable();
             $table->string('account_number')->nullable();
+            $table->string('account_name')->nullable();
             $table->string('bank')->nullable();
             $table->string('image')->nullable();
             $table->integer('referred_by')->default(1);

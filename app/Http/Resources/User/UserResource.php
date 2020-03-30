@@ -25,6 +25,7 @@ class UserResource extends JsonResource
             'bank' => $this->bank,
             'state' => $this->state,
             'account_number' => $this->account_number,
+            'account_name' => $this->account_name,
             'image' => $this->image,
             'role' => $this->role,
             'created_at' => date("dS M Y", strtotime($this->created_at)),

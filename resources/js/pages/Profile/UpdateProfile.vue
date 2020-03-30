@@ -108,6 +108,23 @@
             </div>
 
             <div class="form-group row">
+              <label for="inputAccountName" class="col-sm-2 col-form-label">Account Name</label>
+              <div class="col-sm-8">
+                <input
+                  type="text"
+                  class="form-control"
+                  id="inputAccountName"
+                  v-model="loggedInUser.account_name"
+                  :class="{'is-invalid': errors.account_name }"
+                />
+                <span
+                  class="invalid-feedback"
+                  v-if="errors.account_name"
+                >{{ errors.account_name[0] }}</span>
+              </div>
+            </div>
+
+            <div class="form-group row">
               <label for="inputBank" class="col-sm-2 col-form-label">Bank</label>
               <div class="col-sm-8">
                 <input
@@ -211,6 +228,10 @@ export default {
       this.record.append(
         "account_number",
         this.loggedInUser.account_number ? this.loggedInUser.account_number : ""
+      );
+      this.record.append(
+        "account_name",
+        this.loggedInUser.account_name ? this.loggedInUser.account_name : ""
       );
       this.record.append(
         "bank",
