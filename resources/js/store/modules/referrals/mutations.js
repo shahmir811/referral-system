@@ -38,6 +38,6 @@ export const clearAllReferrals = state => {
 
 export const clearSelectedUser = state => (state.selectedUser = null);
 
-export const getSelectedUserProfile = (state, token) => {
-    state.selectedUser = state.users.find(data => data.token === token);
+export const getSelectedUserProfile = (state, id) => {
+    state.selectedUser = state.users.find(data => data.id === id);
 };

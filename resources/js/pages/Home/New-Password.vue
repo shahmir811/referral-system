@@ -78,7 +78,7 @@ export default {
       record: {
         new_password: "",
         confirm_password: "",
-        token: this.$route.params.token
+        id: this.$route.params.id
       }
     };
   },

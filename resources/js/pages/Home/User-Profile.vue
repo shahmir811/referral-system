@@ -91,7 +91,7 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "User-Profile",
   mounted() {
-    this.getUserRecord(this.$route.params.token);
+    this.getUserRecord(this.$route.params.id);
   },
   computed: {
     ...mapGetters({
@@ -103,8 +103,8 @@ export default {
     ...mapActions({
       userRecord: "referrals/userRecord"
     }),
-    getUserRecord(token) {
-      this.userRecord(token);
+    getUserRecord(id) {
+      this.userRecord(id);
     }
   }
 };

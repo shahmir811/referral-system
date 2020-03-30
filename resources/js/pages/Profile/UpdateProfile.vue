@@ -197,7 +197,7 @@ export default {
       this.record.append("name", this.loggedInUser.name);
       this.record.append("email", this.loggedInUser.email);
       this.record.append(
-        "address",
+        "contact_number",
         this.loggedInUser.contact_number ? this.loggedInUser.contact_number : ""
       );
       this.record.append(

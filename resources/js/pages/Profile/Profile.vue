@@ -80,11 +80,11 @@
       <div class="row justify-content-md-center">
         <div class="col col-md-8">
           <router-link
-            :to="{ name: 'update-profile', params: { token: user.token } }"
+            :to="{ name: 'update-profile', params: { id: user.id } }"
             class="btn btn-success"
           >Update Profile</router-link>
           <router-link
-            :to="{ name: 'update-password', params: { token: user.token } }"
+            :to="{ name: 'update-password', params: { id: user.id } }"
             class="btn btn-success"
           >Update Password</router-link>
         </div>

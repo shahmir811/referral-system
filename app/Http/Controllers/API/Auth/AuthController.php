@@ -6,6 +6,7 @@ use Auth;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Resources\User\UserResource;
 use App\Http\Requests\Auth\{RegisterFormRequest, LoginFormRequest};
 
 class AuthController extends Controller
@@ -30,7 +31,8 @@ class AuthController extends Controller
     {
         return response()->json([
             'data' => [
-                'user' => $this->guard()->user()
+                // 'user' => $this->guard()->user()
+                'user' => new UserResource($this->guard()->user())
                 ]
             ]
         );

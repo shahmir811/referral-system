@@ -181,7 +181,7 @@ export const changePassword = async ({ commit, dispatch, rootState }, data) => {
 
     try {
         await axios.post(
-            `${rootState.apiURL}/referral/changePasswordByAdmin/${data.token}`,
+            `${rootState.apiURL}/referral/changePasswordByAdmin/${data.id}`,
             {
                 new_password: data.new_password
             }
@@ -211,7 +211,7 @@ export const removeAllErrors = ({ commit }) => {
 };
 
 /////////////////////// Get User profile //////////////////
-export const userRecord = ({ commit }, token) => {
+export const userRecord = ({ commit }, id) => {
     commit("clearSelectedUser");
-    commit("getSelectedUserProfile", token);
+    commit("getSelectedUserProfile", id);
 };

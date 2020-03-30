@@ -113,13 +113,13 @@ const router = new Router({
             meta: { guest: false, needsAuth: true }
         },
         {
-            path: "/update-profile/:token",
+            path: "/update-profile/:id",
             component: UpdateProfile,
             name: "update-profile",
             meta: { guest: false, needsAuth: true }
         },
         {
-            path: "/update-password/:token",
+            path: "/update-password/:id",
             component: UpdatePassword,
             name: "update-password",
             meta: { guest: false, needsAuth: true }
@@ -131,13 +131,13 @@ const router = new Router({
             meta: { guest: false, needsAuth: true }
         },
         {
-            path: "/user-profile/:token",
+            path: "/user-profile/:id",
             component: UserProfile,
             name: "user-profile",
             meta: { guest: false, needsAuth: true }
         },
         {
-            path: "/new-password/:token",
+            path: "/new-password/:id",
             component: NewPassword,
             name: "new-password",
             meta: { guest: false, needsAuth: true }

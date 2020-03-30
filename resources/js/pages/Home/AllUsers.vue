@@ -30,7 +30,7 @@
                   <td>{{ record.referral_name }}</td>
                   <td v-if="record.role != 'admin' ">
                     <router-link
-                      :to="{ name: 'user-profile', params: { token: record.token } }"
+                      :to="{ name: 'user-profile', params: { id: record.id } }"
                       class="btn btn-sm btn-warning"
                     >
                       <i class="fa fa-eye" aria-hidden="true"></i>
@@ -44,7 +44,7 @@
                       <i class="fa fa-caret-square-o-right"></i> Status
                     </a>
                     <router-link
-                      :to="{ name: 'new-password', params: { token: record.token } }"
+                      :to="{ name: 'new-password', params: { id: record.id } }"
                       class="btn btn-sm btn-secondary"
                     >
                       <i class="fa fa-key"></i> Password
