@@ -19,26 +19,13 @@ Vue.use(BootstrapVue);
 Vue.use(VueSweetalert2);
 
 // Following code is used for persistent login
-store
-    .dispatch("auth/setToken")
-    .then(() => {
-        store
-            .dispatch("auth/fetchUser")
-            .then(() => {
-                store.dispatch("referrals/getRecords");
-            })
-            .catch(() => {
-                store.dispatch("auth/clearAuth");
-                router.replace({ name: "login" }).catch(err => {});
-            });
-    })
-    .catch(() => {
-        store.dispatch("auth/clearAuth");
+localForage.getItem("authtoken", (err, token) => {
+    store.dispatch("auth/attempt", token).then(() => {
+        new Vue({
+            el: "#app",
+            router,
+            store,
+            render: h => h(App)
+        });
     });
-
-new Vue({
-    el: "#app",
-    router,
-    store,
-    render: h => h(App)
 });

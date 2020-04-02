@@ -177,3 +177,31 @@ export const UpdateLoggedInUserProfile = ({ commit }, paylaod) => {
 export const removeAllErrors = ({ commit }) => {
     commit("clearErrors");
 };
+
+/////////////////////// Attempt function execute at first //////////////////
+export const attempt = async (
+    { commit, state, dispatch, rootState },
+    token
+) => {
+    console.log("ACTION Attempt function");
+    console.log("TOKEN: ", token);
+
+    if (token) {
+        commit("setToken", token);
+        setHttpToken(token);
+    }
+
+    // if (!state.token) {
+    //     return;
+    // }
+
+    try {
+        const response = await axios.get(`${rootState.apiURL}/auth/me`);
+        commit("setIsAuthenticated", true);
+        commit("setUserData", response.data.data.user);
+
+        await dispatch("referrals/getRecords", null, { root: true });
+    } catch (error) {
+        dispatch("clearAuth");
+    }
+};

@@ -9,12 +9,12 @@
       <h6 class="mtb-15">
         <i class="fa fa-envelope" aria-hidden="true"></i> support@netcontacts.com.ng
       </h6>
-      <h6 class="mtb-15">
+      <!-- <h6 class="mtb-15">
         <i class="fa fa-whatsapp" aria-hidden="true"></i> 08137981072
       </h6>
       <h6 class="mtb-15">
         <i class="fa fa-phone" aria-hidden="true"></i> +23440534352, +2348037472464
-      </h6>
+      </h6>-->
     </div>
 
     <!-- Icon Divider -->

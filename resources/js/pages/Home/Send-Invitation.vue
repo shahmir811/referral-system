@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="role !== 'free'">
     <div class="row justify-content-center">
       <div class="col-md-8">
         <div class="card">
@@ -76,11 +76,6 @@ export default {
     })
   },
   mounted() {
-    if (this.role === "free" || !this.role) {
-      this.$router.push("/not-found");
-      return false;
-    }
-    console.log("ROLE: ", this.role);
     this.url = this.invitationLink
       ? `${this.siteURL}${this.invitationLink}`
       : `${this.siteURL}`;

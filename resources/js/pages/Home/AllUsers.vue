@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-if="role === 'admin'">
     <div class="row">
       <template v-if="!loading">
         <div class="col-md-12">
@@ -66,10 +66,6 @@ import { mapGetters, mapActions } from "vuex";
 export default {
   name: "AllUsers",
   mounted() {
-    if (this.role !== "admin") {
-      this.$router.push("/not-found");
-      return false;
-    }
     this.getAllSystemUsers();
   },
   computed: {
