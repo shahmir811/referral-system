@@ -33,4 +33,18 @@ class ContactController extends Controller
             'message' => 'Contact us email sent',
         ], 200);   
     }
+
+    public function getUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'Contact us email sent',
+            'data' => [
+                'user' => $user
+            ]
+        ], 200);   
+
+    }
 }

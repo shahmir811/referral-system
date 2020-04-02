@@ -6,6 +6,7 @@ Vue.use(Router);
 
 import Landing from "../pages/Guests/Landing.vue";
 import AboutUs from "../pages/Guests/About-us.vue";
+import Referral from "../pages/Guests/Referral.vue";
 import ContactUs from "../pages/Guests/Contact-us.vue";
 import ForgotPassword from "../pages/Guests/Forgot-password.vue";
 import PasswordReset from "../pages/Guests/Password-reset.vue";
@@ -141,6 +142,12 @@ const router = new Router({
             component: NewPassword,
             name: "new-password",
             meta: { guest: false, needsAuth: true }
+        },
+        {
+            path: "/referral",
+            component: Referral,
+            name: "referral",
+            meta: { guest: true, needsAuth: false }
         },
         {
             path: "*",

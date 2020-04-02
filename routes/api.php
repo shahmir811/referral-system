@@ -2,6 +2,7 @@
 
 
 Route::post('contact-us', 'Api\Guest\ContactController@contactUS');
+Route::get('getUser/{id}', 'Api\Guest\ContactController@getUser');
 
 Route::group([
     'namespace' => 'API\Auth',
