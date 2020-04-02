@@ -183,17 +183,10 @@ export const attempt = async (
     { commit, state, dispatch, rootState },
     token
 ) => {
-    console.log("ACTION Attempt function");
-    console.log("TOKEN: ", token);
-
     if (token) {
         commit("setToken", token);
         setHttpToken(token);
     }
-
-    // if (!state.token) {
-    //     return;
-    // }
 
     try {
         const response = await axios.get(`${rootState.apiURL}/auth/me`);
