@@ -1,7 +1,9 @@
 <template>
   <div>
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm mb-50">
-      <router-link class="navbar-brand" :to="{ name: 'landing' }">Net Contacts</router-link>
+      <router-link class="navbar-brand" :to="{ name: 'landing' }">
+        <img :src="logo" alt="net-contacts-site" class="image-resize" />
+      </router-link>
       <button
         class="navbar-toggler"
         type="button"
@@ -60,14 +62,17 @@
           </template>
           <template v-else>
             <li class="nav-item">
+              <router-link class="nav-link" :to="{ name: 'landing' }">Home</router-link>
+            </li>
+            <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'how-it-works' }">How It Woks</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Us</router-link>
+              <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Net Contacts</router-link>
             </li>
-            <!-- <li class="nav-item">
+            <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'faq' }">FAQ</router-link>
-            </li>-->
+            </li>
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'how-to-promote' }">How to Promote</router-link>
             </li>
@@ -98,15 +103,16 @@ export default {
       isAuthenticated: "auth/isAuthenticated",
       username: "auth/username",
       user: "auth/user",
-      role: "auth/role"
+      role: "auth/role",
+      imageURL: "imageURL"
     })
   },
   mounted() {
-    //
+    this.logo = `${this.imageURL}public/img/site_logo.png`;
   },
   data() {
     return {
-      //
+      logo: null
     };
   },
   methods: {
@@ -124,5 +130,12 @@ export default {
 
 .mb-50 {
   margin-bottom: 50px;
+}
+
+.image-resize {
+  position: absolute;
+  top: -28px;
+  height: 110px;
+  width: 110px;
 }
 </style>

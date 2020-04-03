@@ -20,6 +20,9 @@ class AncestorData extends JsonResource
             'email' => $this->email,
             'contact_number' => $this->contact_number,
             'address' => $this->address,
+            'bank' => $this->bank,
+            'account_name' => $this->account_name,
+            'account_number' => $this->account_number,
         ];
     }
 }

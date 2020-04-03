@@ -10,15 +10,91 @@
         <li>You cannot have your unique Invitation Code (IC) to use to invite people.</li>
         <li>You cannot upload your Bank Account details for people to pay into your account.</li>
         <li>You cannot upload your Photo picture and Contact details.</li>
+        <li>You cannot have access to promotional page.</li>
       </ul>
       <p>
         To have full access as PAID MEMBERSHIP, kindly activate your account by paying ₦ 2,500 (Two Thousand Five Hundred Naira only) into
         <strong>{{ user.referral_name }}</strong> bank account details.
       </p>
       <p>
+        <a href="#" data-toggle="modal" data-target="#showDetails">CLICK HERE</a>
+        to view details of {{ user.referral_name }}
+      </p>
+      <p>
         <strong>PLEASE NOTE:</strong>
         Only {{ user.referral_name }} can activate your account.
       </p>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="showDetails"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="showDetailsLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title text-center" id="exampleModalLabel">Referral Person details</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group row">
+                    <label for="staticName" class="col-sm-4 col-form-label">Name</label>
+                    <div class="col-sm-8">
+                      <p class="form-control-plaintext" id="staticName">{{ ancestor.name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="staticName" class="col-sm-4 col-form-label">Phone</label>
+                    <div class="col-sm-8">
+                      <p
+                        class="form-control-plaintext"
+                        id="staticName"
+                      >{{ ancestor.contact_number }}</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="staticName" class="col-sm-4 col-form-label">Bank</label>
+                    <div class="col-sm-8">
+                      <p class="form-control-plaintext" id="staticName">{{ ancestor.bank }}</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="staticName" class="col-sm-4 col-form-label">Account Name</label>
+                    <div class="col-sm-8">
+                      <p class="form-control-plaintext" id="staticName">{{ ancestor.account_name }}</p>
+                    </div>
+                  </div>
+
+                  <div class="form-group row">
+                    <label for="staticName" class="col-sm-4 col-form-label">Account Number</label>
+                    <div class="col-sm-8">
+                      <p
+                        class="form-control-plaintext"
+                        id="staticName"
+                      >{{ ancestor.account_number }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Modal ends here -->
     </template>
     <template v-else>
       <div class="jumbotron no-padding">

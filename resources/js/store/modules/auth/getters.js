@@ -10,7 +10,8 @@ export const errors = state => state.errors;
 
 export const invitationLink = state => {
     if (state.user) {
-        return `register?email=${state.user.email}&referral=${state.user.token}`;
+        // return `register?email=${state.user.email}&referral=${state.user.token}`;
+        return `referral?referral=${state.user.id}`;
     }
 
     return null;
