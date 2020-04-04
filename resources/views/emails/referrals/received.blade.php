@@ -7,7 +7,7 @@ Click on the following button or use <strong> Referral ID:  {{ $sender->token }}
 Sign up now
 @endcomponent
 
-Checkout more info about Net Contacts, <a href="{{ url('/referral?referral=' . $sender->id) }}">Click here!</a>
+Checkout more info about Net Contacts, <a href="{{ url('/invitation?invitationcode=' . $sender->token) }}">Click here!</a>
 
 Thanks,<br>
 {{ config('app.name') }}

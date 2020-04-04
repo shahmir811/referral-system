@@ -92,13 +92,13 @@ import axios from "axios";
 export default {
   name: "Referral",
   mounted() {
-    this.referralID = this.$route.query.referral;
+    this.invitationtoken = this.$route.query.invitationcode;
     this.getUserData();
   },
   data() {
     return {
       loading: true,
-      referralID: null,
+      invitationtoken: null,
       user: null
     };
   },
@@ -110,7 +110,7 @@ export default {
   methods: {
     getUserData() {
       axios
-        .get(`${this.rootURL}/getUser/${this.referralID}`)
+        .get(`${this.rootURL}/getUser/${this.invitationtoken}`)
         .then(response => {
           this.user = response.data.data.user;
           this.loading = false;

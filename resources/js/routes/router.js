@@ -33,129 +33,129 @@ const router = new Router({
             path: "/",
             component: Landing,
             name: "landing",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/aboutUs",
             component: AboutUs,
             name: "aboutUs",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/contactUs",
             component: ContactUs,
             name: "contactUs",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/faq",
             component: FAQ,
             name: "faq",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/how-it-works",
             component: HowItWorks,
             name: "how-it-works",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/how-to-promote",
             component: HowToPromote,
             name: "how-to-promote",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/forgot-password",
             component: ForgotPassword,
             name: "forgot-password",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/password-reset",
             component: PasswordReset,
             name: "password-reset",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/login",
             component: Login,
             name: "login",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/register",
             component: Register,
             name: "register",
-            meta: { guest: true, needsAuth: false }
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "/home",
             component: Home,
             name: "home",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/pending-referrals",
             component: PendingReferrals,
             name: "pending-referrals",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/sending-inviation",
             component: SendInvitation,
             name: "sending-inviation",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/profile",
             component: Profile,
             name: "profile",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/update-profile/:id",
             component: UpdateProfile,
             name: "update-profile",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/update-password/:id",
             component: UpdatePassword,
             name: "update-password",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/all-users",
             component: AllUsers,
             name: "all-users",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/user-profile/:id",
             component: UserProfile,
             name: "user-profile",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
             path: "/new-password/:id",
             component: NewPassword,
             name: "new-password",
-            meta: { guest: false, needsAuth: true }
+            meta: { guest: false, needsAuth: true },
         },
         {
-            path: "/referral",
+            path: "/invitation",
             component: Referral,
-            name: "referral",
-            meta: { guest: true, needsAuth: false }
+            name: "invitation",
+            meta: { guest: true, needsAuth: false },
         },
         {
             path: "*",
-            component: NotFound
-        }
+            component: NotFound,
+        },
 
         // { path: '/', component: , name: '', meta: { guest: true, needsAuth: false }},
-    ]
+    ],
 });
 
 // Registering beforeEach

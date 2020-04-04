@@ -34,9 +34,9 @@ class ContactController extends Controller
         ], 200);   
     }
 
-    public function getUser($id)
+    public function getUser($token)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('token', '=', $token)->first();
 
         return response() -> json([
             'status' => 1,
