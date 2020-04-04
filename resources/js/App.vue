@@ -11,7 +11,7 @@
     <!-- For LoggedIn routes -->
     <template v-else>
       <!-- If user email is verified -->
-      <template v-if="user_verified === 1">
+      <template v-if="user_verified == 1">
         <router-view></router-view>
       </template>
 
