@@ -31,7 +31,8 @@ class UserResource extends JsonResource
             'image' => $this->image,
             'role' => $this->role,
             'created_at' => date("dS M Y", strtotime($this->created_at)),
-            'referral_name' => $this->ancestorName()
+            'referral_name' => $this->ancestorName(),
+            'referral_count' => $this->myCurrentReferralsCount()
         ];
     }
 }

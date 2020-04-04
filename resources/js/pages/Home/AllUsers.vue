@@ -5,7 +5,7 @@
         <div class="col-md-12">
           <h3 class="text-center">All Users - ({{ users_count }})</h3>
 
-          <table class="table table-stripped table-hover table-bordered">
+          <table class="table table-stripped table-hover table-bordered table-sm">
             <thead>
               <tr>
                 <th>#</th>
@@ -49,6 +49,14 @@
                     >
                       <i class="fa fa-key"></i> Password
                     </router-link>
+                    <a
+                      @click.prevent="onDeleteHandler(record.id)"
+                      v-if="record.referral_count === 0"
+                      href="#"
+                      class="btn btn-sm btn-danger"
+                    >
+                      <i class="fa fa-trash"></i> Delete
+                    </a>
                   </td>
                 </tr>
               </template>
@@ -79,10 +87,10 @@ export default {
   methods: {
     ...mapActions({
       getAllSystemUsers: "referrals/getAllSystemUsers",
-      changeUserStatus: "referrals/changeUserStatus"
+      changeUserStatus: "referrals/changeUserStatus",
+      deleteUser: "referrals/deleteUser"
     }),
     onClickHandler(userId) {
-      // this.changeUserStatus(id)
       this.$swal
         .fire({
           title: "Are you sure?",
@@ -99,6 +107,29 @@ export default {
               this.$swal.fire(
                 "Activated!",
                 "User status has been changed.",
+                "success"
+              );
+            });
+          }
+        });
+    },
+    onDeleteHandler(userId) {
+      this.$swal
+        .fire({
+          title: "Are you sure to delete this user?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!"
+        })
+        .then(result => {
+          if (result.value) {
+            this.deleteUser(userId).then(() => {
+              this.$swal.fire(
+                "Activated!",
+                "User has been deleted.",
                 "success"
               );
             });

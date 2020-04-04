@@ -65,4 +65,9 @@ class User extends Authenticatable implements JWTSubject
     {
         return User::where('id', '=', $this->referred_by)->pluck('name')->first();
     }
+
+    public function myCurrentReferralsCount()
+    {
+        return User::where('referred_by', '=', $this->id)->count();
+    }
 }

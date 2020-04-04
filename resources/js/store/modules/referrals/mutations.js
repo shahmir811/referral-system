@@ -1,8 +1,8 @@
-export const startLoading = state => (state.loading = true);
+export const startLoading = (state) => (state.loading = true);
 
-export const endLoading = state => (state.loading = false);
+export const endLoading = (state) => (state.loading = false);
 
-export const clearErrors = state => (state.errors = []);
+export const clearErrors = (state) => (state.errors = []);
 
 export const setError = (state, data) => (state.errors = data);
 
@@ -11,13 +11,15 @@ export const addNewReferral = (state, payload) => {
 };
 
 export const changeUserStatus = (state, userId) => {
-    const index = state.users.findIndex(user => user.id === userId);
+    const index = state.users.findIndex((user) => user.id === userId);
     state.users[index].role =
         state.users[index].role === "free" ? "active" : "free";
 };
 
 export const activateUser = (state, userId) => {
-    const index = state.referrals.findIndex(referral => referral.id === userId);
+    const index = state.referrals.findIndex(
+        (referral) => referral.id === userId
+    );
     state.referrals[index].role = "active";
 };
 
@@ -29,15 +31,19 @@ export const setInitialRecord = (state, payload) => {
     state.pending_referrals = payload.pending_referrals;
 };
 
-export const clearAllReferrals = state => {
+export const clearAllReferrals = (state) => {
     state.ancestor = null;
     state.referrals = [];
     state.pending_referrals = [];
     state.errors = [];
 };
 
-export const clearSelectedUser = state => (state.selectedUser = null);
+export const clearSelectedUser = (state) => (state.selectedUser = null);
 
 export const getSelectedUserProfile = (state, id) => {
-    state.selectedUser = state.users.find(data => data.id === id);
+    state.selectedUser = state.users.find((data) => data.id === id);
+};
+
+export const removeUserRecord = (state, id) => {
+    state.users = state.users.filter((user) => user.id !== id);
 };

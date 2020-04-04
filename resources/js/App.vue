@@ -2,12 +2,23 @@
   <div>
     <Alert v-if="message" />
     <Navigation />
-    <template v-if="user_verified">
+
+    <!-- For Guest routes -->
+    <template v-if="!user">
       <router-view></router-view>
     </template>
 
+    <!-- For LoggedIn routes -->
     <template v-else>
-      <NotVerified />
+      <!-- If user email is verified -->
+      <template v-if="user_verified">
+        <router-view></router-view>
+      </template>
+
+      <!-- If user email is not verified -->
+      <template v-else>
+        <NotVerified />
+      </template>
     </template>
   </div>
 </template>
@@ -24,7 +35,8 @@ export default {
   computed: {
     ...mapGetters({
       message: "message",
-      user_verified: "auth/user_verified"
+      user_verified: "auth/user_verified",
+      user: "auth/user"
     })
   },
   components: {

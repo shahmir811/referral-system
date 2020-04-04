@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\API\Auth;
 
+use Str;
 use Auth;
 use Mail;
-use Str;
+use File;
 use Carbon\Carbon;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
@@ -115,6 +116,25 @@ class AuthController extends Controller
             'status' => 1,
             'message' => 'Email sent for verification'
         ]);
+    }
+
+    public function deleteUser($id)
+    {
+        $user = User::findOrFail($id);
+
+        // remove user image from drive
+        if($user->image) {
+            File::delete($user->image);
+        }
+
+        User::destroy($user->id);
+
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'User deleted successfully'
+        ], 200);
+
     }
 
     /////////////////////////////////////////////////////////////////////////

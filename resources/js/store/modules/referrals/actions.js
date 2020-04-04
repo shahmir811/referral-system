@@ -29,7 +29,7 @@ export const inviteFriend = async (
         const response = await axios.post(
             `${rootState.apiURL}/referral/sendReferral`,
             {
-                email: invitationEmail
+                email: invitationEmail,
             }
         );
 
@@ -39,7 +39,7 @@ export const inviteFriend = async (
             "flashMessage",
             {
                 message: "Inviation sent successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -62,20 +62,20 @@ export const clearAllReferrals = ({ commit }) => {
 export const activateUserAccount = ({ commit, rootState }, userId) => {
     return axios
         .get(`${rootState.apiURL}/referral/activateUserAccount/${userId}`)
-        .then(response => {
+        .then((response) => {
             commit("activateUser", userId);
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
 };
 
 /////////////////////// Change User status ///////////////////////
 export const changeUserStatus = ({ commit, dispatch, rootState }, userId) => {
     return axios
         .get(`${rootState.apiURL}/referral/changeUserStatusByAdmin/${userId}`)
-        .then(response => {
+        .then((response) => {
             commit("changeUserStatus", userId);
         })
-        .catch(error => console.log(error));
+        .catch((error) => console.log(error));
 };
 
 /////////////////////// Update User profile ///////////////////////
@@ -87,8 +87,8 @@ export const UpdateUserProfile = async (
     commit("startLoading");
     let config = {
         header: {
-            "Content-Type": "multipart/form-data"
-        }
+            "Content-Type": "multipart/form-data",
+        },
     };
 
     try {
@@ -99,14 +99,14 @@ export const UpdateUserProfile = async (
         );
 
         dispatch("auth/UpdateLoggedInUserProfile", response.data.data.user, {
-            root: true
+            root: true,
         });
 
         dispatch(
             "flashMessage",
             {
                 message: "Profile updated successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -134,7 +134,7 @@ export const currentlyLoggedInUser = async (
             `${rootState.apiURL}/referral/updatePassword/${data.id}`,
             {
                 old_password: data.old_password,
-                new_password: data.new_password
+                new_password: data.new_password,
             }
         );
 
@@ -142,7 +142,7 @@ export const currentlyLoggedInUser = async (
             "flashMessage",
             {
                 message: "Password updated successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -183,7 +183,7 @@ export const changePassword = async ({ commit, dispatch, rootState }, data) => {
         await axios.post(
             `${rootState.apiURL}/referral/changePasswordByAdmin/${data.id}`,
             {
-                new_password: data.new_password
+                new_password: data.new_password,
             }
         );
 
@@ -191,7 +191,7 @@ export const changePassword = async ({ commit, dispatch, rootState }, data) => {
             "flashMessage",
             {
                 message: "Password updated successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -214,4 +214,14 @@ export const removeAllErrors = ({ commit }) => {
 export const userRecord = ({ commit }, id) => {
     commit("clearSelectedUser");
     commit("getSelectedUserProfile", id);
+};
+
+/////////////////////// Delete User  //////////////////
+export const deleteUser = ({ commit, dispatch, rootState }, userId) => {
+    return axios
+        .delete(`${rootState.apiURL}/auth/deleteUser/${userId}`)
+        .then(() => {
+            commit("removeUserRecord", userId);
+        })
+        .catch((error) => console.log(error));
 };

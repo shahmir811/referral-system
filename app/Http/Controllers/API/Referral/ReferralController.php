@@ -140,7 +140,7 @@ class ReferralController extends Controller
         $users = User::orderBy('name', 'asc')->get();
         return response() -> json([
             'status' => 1,
-            'message' => 'User profile updated',
+            'message' => 'List of all system Users',
             'data' => UserResource::collection($users)
         ], 200);
 
