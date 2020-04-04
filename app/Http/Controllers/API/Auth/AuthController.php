@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\API\Auth;
 
 use Auth;
+use Mail;
+use Str;
+use Carbon\Carbon;
 use App\Models\{User, Referral};
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Mail\Auth\VerifyEmailAddress;
 use App\Http\Resources\User\UserResource;
 use App\Http\Requests\Auth\{RegisterFormRequest, LoginFormRequest};
 
@@ -83,8 +87,16 @@ class AuthController extends Controller
             $newUser->referred_by = $findAncertorUser->id; 
         }
 
+        $verification_code = Str::random(30);
+
+        $newUser->email_verification_token = $verification_code;
+
         $newUser->save();
 
+
+        // sending email verification mail to newly registered user
+        $this->sendEmailVerification($newUser);
+        
         // remove all similar emails from referrals table
         $this->removeEmailFromReferralTable($request->email);
 
@@ -92,6 +104,26 @@ class AuthController extends Controller
             'status' => 1,
             'message' => 'User registered successfully'
         ]);
+    }
+
+    public function verifyUser()
+    {
+        $user = Auth::user();
+        $this->sendEmailVerification($user);
+
+        return response() -> json([
+            'status' => 1,
+            'message' => 'Email sent for verification'
+        ]);
+    }
+
+    /////////////////////////////////////////////////////////////////////////
+
+
+    private function sendEmailVerification(User $user)
+    {
+        return Mail::to($user->email)->send(new VerifyEmailAddress($user));
+
     }
 
     private function removeEmailFromReferralTable($email)

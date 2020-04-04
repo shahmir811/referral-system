@@ -19,6 +19,9 @@ class CreateUsersTable extends Migration
             $table->string('role')->default('free');
             $table->string('email')->unique();
             $table->string('password');
+            $table->timestamp('email_verified_at')->nullable();
+            $table->boolean('is_verified')->default(0);
+            $table->string('email_verification_token')->nullable();
             $table->string('contact_number')->unique()->nullable();
             $table->string('address')->nullable();
             $table->string('state')->nullable();

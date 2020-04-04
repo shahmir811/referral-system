@@ -20,7 +20,7 @@ export const registerNewUser = async (
             "flashMessage",
             {
                 message: "User registered successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -35,7 +35,7 @@ export const registerNewUser = async (
                 {
                     message:
                         "Oops! It seems that your referral is incorrect. Kindly contact your friend",
-                    type: "danger"
+                    type: "danger",
                 },
                 { root: true }
             );
@@ -72,13 +72,13 @@ export const loginUser = async (
             "flashMessage",
             {
                 message: "Login successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
 
         // Below code redirects user to intended page after login
-        localForage.getItem("intended").then(name => {
+        localForage.getItem("intended").then((name) => {
             if (isEmpty(name)) {
                 router.push("/home");
                 return;
@@ -96,7 +96,7 @@ export const loginUser = async (
                 "flashMessage",
                 {
                     message: "Could not sign you in with those credentials",
-                    type: "danger"
+                    type: "danger",
                 },
                 { root: true }
             );
@@ -107,7 +107,7 @@ export const loginUser = async (
 
 /////////////////////// fetch currently logged in user //////////////////
 export const fetchUser = ({ commit, dispatch, rootState }) => {
-    return axios.get(`${rootState.apiURL}/auth/me`).then(response => {
+    return axios.get(`${rootState.apiURL}/auth/me`).then((response) => {
         commit("setIsAuthenticated", true);
         commit("setUserData", response.data.data.user);
     });
@@ -125,7 +125,7 @@ export const logout = async ({ dispatch, rootState }) => {
             "flashMessage",
             {
                 message: "Logout successfully",
-                type: "success"
+                type: "success",
             },
             { root: true }
         );
@@ -140,7 +140,7 @@ export const setToken = ({ commit, dispatch }, token) => {
     // if no token is passed
     if (isEmpty(token)) {
         // When application first starts we need to check whether there is a token in localStorage or not
-        return dispatch("checkTokenExists").then(token => {
+        return dispatch("checkTokenExists").then((token) => {
             setHttpToken(token);
         });
     }
@@ -152,7 +152,7 @@ export const setToken = ({ commit, dispatch }, token) => {
 
 /////////////////////// check token exists in localStorage or not ///////////////////////
 export const checkTokenExists = ({ commit }) => {
-    return localForage.getItem("authtoken").then(token => {
+    return localForage.getItem("authtoken").then((token) => {
         if (isEmpty(token)) {
             return Promise.reject("NO_LOCALSTORAGE_TOKEN");
         }
@@ -196,5 +196,29 @@ export const attempt = async (
         await dispatch("referrals/getRecords", null, { root: true });
     } catch (error) {
         dispatch("clearAuth");
+    }
+};
+
+/////////////////////// Requesting for verification code //////////////////
+export const sendVerificationCode = async ({ commit, dispatch, rootState }) => {
+    commit("startLoading");
+
+    try {
+        await axios.get(`${rootState.apiURL}/auth/verifyUser`);
+
+        dispatch(
+            "flashMessage",
+            {
+                message:
+                    "Verification link has been sent to your email address",
+                type: "success",
+            },
+            { root: true }
+        );
+
+        commit("endLoading");
+    } catch (error) {
+        console.log("Error: ", error);
+        commit("endLoading");
     }
 };

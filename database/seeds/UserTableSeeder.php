@@ -1,5 +1,6 @@
 <?php
 
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,8 @@ class UserTableSeeder extends Seeder
         $admin->contact_number = '+1 123 456789';
         $admin->address = 'Test Address';
         $admin->referred_by = 1;
+        $admin->email_verified_at = Carbon::now();
+        $admin->is_verified = 1;
         $admin->save();
 
         // $active2 = new User;
