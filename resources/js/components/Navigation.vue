@@ -68,7 +68,7 @@
               <router-link class="nav-link" :to="{ name: 'how-it-works' }">How It Woks</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link" :to="{ name: 'aboutUs' }">About Net Contacts</router-link>
+              <router-link class="nav-link" :to="{ name: 'aboutUs' }">About NetContacts</router-link>
             </li>
             <li class="nav-item">
               <router-link class="nav-link" :to="{ name: 'faq' }">FAQ</router-link>

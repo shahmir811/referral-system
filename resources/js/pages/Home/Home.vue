@@ -131,7 +131,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact Number</th>
-                <th>Address</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -142,7 +141,6 @@
                   <td>{{ record.name }}</td>
                   <td>{{ record.email }}</td>
                   <td>{{ record.contact_number }}</td>
-                  <td>{{ record.address }}</td>
                   <td>
                     <template v-if="record.role == 'free'">
                       <a

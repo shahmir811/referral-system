@@ -12,7 +12,6 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact Number</th>
-                <th>Address</th>
                 <th>Status</th>
                 <th>Referred By</th>
                 <th>Action</th>
@@ -25,7 +24,6 @@
                   <td>{{ record.name }}</td>
                   <td>{{ record.email }}</td>
                   <td>{{ record.contact_number }}</td>
-                  <td>{{ record.address }}</td>
                   <td>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</td>
                   <td>{{ record.referral_name }}</td>
                   <td v-if="record.role != 'admin' ">

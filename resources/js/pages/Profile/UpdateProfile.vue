@@ -63,7 +63,7 @@
             </div>
           </div>
           <div class="form-group row">
-            <label for="inputAddress" class="col-sm-2 col-form-label">Address</label>
+            <label for="inputAddress" class="col-sm-2 col-form-label">State of Residence</label>
             <div class="col-sm-8">
               <input
                 type="text"
@@ -75,7 +75,7 @@
               <span class="invalid-feedback" v-if="errors.address">{{ errors.address[0] }}</span>
             </div>
           </div>
-          <div class="form-group row">
+          <!-- <div class="form-group row">
             <label for="inputState" class="col-sm-2 col-form-label">State</label>
             <div class="col-sm-8">
               <input
@@ -87,7 +87,7 @@
               />
               <span class="invalid-feedback" v-if="errors.state">{{ errors.state[0] }}</span>
             </div>
-          </div>
+          </div>-->
 
           <template v-if="role !== 'free'">
             <div class="form-group row">
