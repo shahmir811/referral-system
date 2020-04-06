@@ -16,7 +16,6 @@
                   <a href="#" class="pt-6" @click.prevent="copyToClipboard">
                     <i class="fa fa-clipboard little-big" aria-hidden="true"></i>
                   </a>
-                  <input type="text" ref="input" v-model="url" class="hidden" />
                 </div>
               </div>
             </template>
@@ -106,25 +105,14 @@ export default {
       this.inviteFriend(this.user.email);
     },
     copyToClipboard() {
-      // const myURL = this.$refs.input;
-      // myURL.select();
-
-      // document.execCommand("copy");
-
       let temp = document.createElement("textarea");
       temp.value = this.url;
       document.body.appendChild(temp);
       temp.select();
       try {
         let success = document.execCommand("copy");
-        let type = success ? "success" : "warning";
-        let msg = success
-          ? `Copied to Clipboard: ${this.url}`
-          : "Copy failed, your browser may not support this feature";
-        console.log("Copied to Clipboard:", this.url);
       } catch (err) {
         console.log("Copy failed, your browser may not support this feature.");
-        console.log("Attempted to copy:", this.url);
       }
       document.body.removeChild(temp);
 
