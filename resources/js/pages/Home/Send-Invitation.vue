@@ -9,10 +9,14 @@
             <template v-if="authUser">
               <div class="form-group row">
                 <label for="email" class="col-md-4 col-form-label text-md-right">Invite Friends Via:</label>
-                <div class="col-md-2 social-links">
+                <div class="col-md-6 social-links">
                   <facebook :url="url" scale="2"></facebook>
                   <twitter :url="url" title="Join me on Net Contacts" scale="2"></twitter>
                   <whats-app :url="url" title="Join me on Net Contacts" scale="2"></whats-app>
+                  <a href="#" class="pt-6" @click.prevent="copyToClipboard">
+                    <i class="fa fa-clipboard little-big" aria-hidden="true"></i>
+                  </a>
+                  <input type="text" ref="input" v-model="url" class="hidden" />
                 </div>
               </div>
             </template>
@@ -95,10 +99,22 @@ export default {
   },
   methods: {
     ...mapActions({
-      inviteFriend: "referrals/inviteFriend"
+      inviteFriend: "referrals/inviteFriend",
+      flashMessage: "flashMessage"
     }),
     onSubmitHandler() {
       this.inviteFriend(this.user.email);
+    },
+    copyToClipboard() {
+      const myURL = this.$refs.input;
+      myURL.select();
+
+      document.execCommand("copy");
+
+      this.flashMessage({
+        message: "Copied to clipboard",
+        type: "success"
+      });
     }
   }
 };
@@ -113,5 +129,17 @@ export default {
 .social-links > span {
   padding: 0 1em;
   cursor: pointer;
+}
+
+.little-big {
+  font-size: 1.4rem;
+}
+
+.pt-6 {
+  padding-top: 6px;
+}
+
+.hidden {
+  display: none;
 }
 </style>
