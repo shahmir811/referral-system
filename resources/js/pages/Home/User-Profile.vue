@@ -61,6 +61,12 @@
           </div>
         </div>
         <div class="form-group row">
+          <label for="staticAddress" class="col-sm-4 col-form-label">Registration Date</label>
+          <div class="col-sm-8">
+            <p class="form-control-plaintext" id="staticAddress">{{ user.created_at }}</p>
+          </div>
+        </div>
+        <div class="form-group row">
           <label for="staticEmailVerification" class="col-sm-4 col-form-label">Email Verified</label>
           <div class="col-sm-8">
             <p

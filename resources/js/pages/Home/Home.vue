@@ -131,6 +131,7 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Contact Number</th>
+                <th>Registration Date</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -141,6 +142,7 @@
                   <td>{{ record.name }}</td>
                   <td>{{ record.email }}</td>
                   <td>{{ record.contact_number }}</td>
+                  <td>{{ record.created_at }}</td>
                   <td>
                     <template v-if="record.role == 'free'">
                       <a

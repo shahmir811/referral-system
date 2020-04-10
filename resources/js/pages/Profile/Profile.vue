@@ -59,6 +59,12 @@
               <p class="form-control-plaintext" id="staticAddress">{{ user.address }}</p>
             </div>
           </div>
+          <div class="form-group row">
+            <label for="staticAddress" class="col-sm-4 col-form-label">Registration Date</label>
+            <div class="col-sm-8">
+              <p class="form-control-plaintext" id="staticAddress">{{ user.created_at }}</p>
+            </div>
+          </div>
           <!-- <div class="form-group row">
             <label for="staticState" class="col-sm-4 col-form-label">State</label>
             <div class="col-sm-8">
