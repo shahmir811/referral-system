@@ -14,6 +14,7 @@
                 <th>Contact Number</th>
                 <th>Status</th>
                 <th>Referred By</th>
+                <th>Registration Date</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -26,6 +27,7 @@
                   <td>{{ record.contact_number }}</td>
                   <td>{{ record.role.charAt(0).toUpperCase() + record.role.slice(1) }}</td>
                   <td>{{ record.referral_name }}</td>
+                  <td>{{ record.created_at }}</td>
                   <td v-if="record.role != 'admin' ">
                     <router-link
                       :to="{ name: 'user-profile', params: { id: record.id } }"
